@@ -1,0 +1,186 @@
+/* Kwitansi */
+.kwitansi {
+    padding: 20px;
+}
+
+.kwitansi h2 {
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.kwitansi .btn {
+    background-color: var(--primary-color);
+    color: var(--tersier-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.kwitansi .btn-primary {
+    background-color: var(--primary-color);
+}
+
+.kwitansi .btn-secondary {
+    background-color: var(--secondary-color);
+}
+
+.kwitansi .btn:hover {
+    opacity: 0.8;
+}
+
+.kwitansi .popup-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.kwitansi .popup {
+    background-color: var(--tersier-color);
+    padding: 50px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.kwitansi .popup h3 {
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.kwitansi .popup input[type="text"],
+.kwitansi .popup input[type="email"],
+.kwitansi .popup input[type="date"],
+.kwitansi .popup input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.kwitansi .popup button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.kwitansi table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.kwitansi table th,
+.kwitansi table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.kwitansi table th {
+    background-color: var(--primary-color);
+    color: var(--tersier-color);
+}
+
+.kwitansi table td {
+    text-align: center;
+}
+
+.kwitansi table button {
+    background-color: var(--secondary-color);
+    color: var(--tersier-color);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.kwitansi table button:hover {
+    opacity: 0.8;
+}
+
+/* Responsif untuk tampilan ponsel */
+@media screen and (max-width: 600px) {
+    .kwitansi .popup {
+        width: 80%; /* Mengisi 80% lebar layar */
+    }
+
+    .kwitansi table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .kwitansi table th,
+    .kwitansi table td {
+        white-space: nowrap;
+    }
+
+    .kwitansi .btn {
+        padding: 8px 16px;
+    }
+}
+
+/* Responsif untuk tablet */
+@media screen and (min-width: 600px) and (max-width: 992px) {
+    .kwitansi .popup {
+        width: 70%; /* Mengisi 70% lebar layar */
+    }
+
+    .kwitansi .btn {
+        padding: 9px 18px;
+    }
+}
+
+/* Responsif untuk desktop kecil dan tablet besar */
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+    .kwitansi .popup {
+        width: 60%; /* Mengisi 60% lebar layar */
+    }
+
+    .kwitansi .btn {
+        padding: 10px 20px;
+    }
+}
+
+/* Responsif untuk desktop besar */
+@media screen and (min-width: 1200px) {
+    .kwitansi .popup {
+        width: 50%; /* Mengisi 50% lebar layar */
+    }
+
+    .kwitansi .btn {
+        padding: 10px 20px;
+    }
+}
+
+/* Responsif untuk tampilan laptop/PC pada rentang 597px hingga 839px */
+@media screen and (min-width: 597px) and (max-width: 839px) {
+    .kwitansi .popup {
+        width: 70%; /* Mengisi 70% lebar layar */
+        padding: 30px; /* Sesuaikan padding dengan kebutuhan */
+    }
+
+    .kwitansi table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .kwitansi table th,
+    .kwitansi table td {
+        white-space: nowrap;
+    }
+
+    .kwitansi .btn {
+        padding: 10px 20px; /* Sesuaikan padding dengan kebutuhan */
+    }
+}

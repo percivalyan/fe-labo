@@ -1,0 +1,29 @@
+/* print.css */
+@media print {
+    .sidebar, .header, .toggle {
+      display: none !important;
+    }
+    
+    /* Adjust the content area to take full width */
+    .ant-layout-content {
+      margin: 0;
+      padding: 0;
+      background: none;
+    }
+  }
+
+  /* print.css */
+@media print {
+    .print button {
+      display: none !important;
+    }
+  }
+  
+  
+  @media print {
+    /* Misalnya, pastikan tabel ditampilkan dengan benar */
+    table {
+        display: table; /* Pastikan tabel ditampilkan */
+    }
+}
+

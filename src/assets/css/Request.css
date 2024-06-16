@@ -1,0 +1,136 @@
+Request
+.request {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap; /* Menambahkan flex-wrap agar elemen dapat dibungkus */
+}
+
+.form-container {
+    border: 1px solid var(--primary-color);
+    padding: 20px;
+    border-radius: 5px;
+    width: 25%; /* 1/4 space */
+    box-sizing: border-box; /* Memastikan padding tidak mempengaruhi lebar elemen */
+}
+
+.form-container h2 {
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container fieldset {
+    border: 1px solid var(--primary-color);
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.form-container legend {
+    font-weight: bold;
+    padding: 0 5px;
+    color: var(--primary-color);
+}
+
+.form-container label {
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.form-container input[type="text"],
+.form-container input[type="number"],
+.form-container select {
+    width: calc(100% - 10px);
+    padding: 5px;
+    margin-bottom: 10px; /* Mengubah margin-bottom dari 0px ke 10px untuk konsistensi */
+    border: 1px solid var(--primary-color);
+    border-radius: 3px;
+}
+
+.form-container input[readonly] {
+    background-color: var(--tersier-color);
+}
+
+.form-container button {
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form-container button[type="button"] {
+    background-color: var(--secondary-color);
+    color: var(--tersier-color);
+}
+
+.form-container button[type="button"]:hover {
+    opacity: 0.8;
+}
+
+.table-container {
+    padding: 20px;
+    border-radius: 5px;
+    width: 75%; /* 3/4 space */
+    box-sizing: border-box; /* Memastikan padding tidak mempengaruhi lebar elemen */
+}
+
+.table-container h2 {
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* Ditambahkan margin-top */
+}
+
+.table-container th,
+.table-container td {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.table-container th {
+    background-color: var(--primary-color);
+    color: var(--tersier-color);
+}
+
+.table-container td {
+    text-align: center;
+}
+
+.table-container button {
+    background-color: var(--secondary-color);
+    color: var(--tersier-color);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.table-container button:hover {
+    opacity: 0.8;
+}
+
+/* Responsif untuk tampilan ponsel */
+@media screen and (max-width: 600px) {
+    .form-container, .table-container {
+        width: 100%; /* Mengisi 100% lebar layar pada perangkat kecil */
+    }
+
+    .table-container table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+}
