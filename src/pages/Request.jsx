@@ -401,7 +401,9 @@ const Request = () => {
                 errors.requestCode ? "is-invalid" : ""
               }`}
               name="requestCode"
-              onChange={(e) => setRequestCode(e.target.value)}
+              value={`${lastId}/${serviceTypeCode}/ABS/${monthNow}/${yearNow}`}
+              // onChange={(e) => setRequestCode(e.target.value)}
+              disabled
             ></input>
             {errors.requestCode && (
               <div className="invalid-feedback"> {errors.requestCode} </div>
@@ -433,7 +435,9 @@ const Request = () => {
               Nama Projek
             </label>
             <select
-              className="custom-select"
+              className={`custom-select ${
+                errors.selectedProject ? "is-invalid" : ""
+              }`}
               id="inputGroupSelect02"
               onChange={(e) => setSelectedProject(e.target.value)}
             >
@@ -444,6 +448,9 @@ const Request = () => {
                 </option>
               ))}
             </select>
+            {errors.selectedProject && (
+              <div className="invalid-feedback"> {errors.selectedProject} </div>
+            )}
             <label className="input">Nama Pengirim</label>
             <input
               type="text"
@@ -592,27 +599,28 @@ const Request = () => {
             {!bolin ? `Add data` : `Update data`}
           </button>
         </fieldset>
+
+        {/* PEMBAYARAN */}
+        <form>
+          <fieldset>
+            <legend>PEMBAYARAN</legend>
+            <label>TOTAL:</label>
+            <input
+              type="text"
+              placeholder="Total Pembayaran" //Total Keseluruhan dari Data Request
+              className="form-control"
+              value={totalPayment}
+              name="totalPayment"
+              onChange={(e) => setTotalPayment(e.target.value)}
+              disabled
+            ></input>
+            <br />
+            <button onClick={saveRequests}>Submit All</button>
+            <br />
+          </fieldset>
+        </form>
       </div>
       <div className="table-container">
-        <div className="form-container">
-          {/* PEMBAYARAN */}
-          <form>
-            <fieldset>
-              <legend>PEMBAYARAN</legend>
-              <label>TOTAL:</label>
-              <input
-                type="text"
-                placeholder="Total Pembayaran" //Total Keseluruhan dari Data Request
-                className="form-control"
-                name="totalPayment"
-                onChange={(e) => setTotalPayment(e.target.value)}
-              ></input>
-              <br />
-              <button onClick={saveRequests}>Submit All</button>
-              <br />
-            </fieldset>
-          </form>
-        </div>
         <h2>Daftar Layanan</h2>
         <table>
           <thead>

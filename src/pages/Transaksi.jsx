@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { listCustomers } from "../services/Customer";
@@ -300,19 +300,22 @@ const Transaksi = () => {
   function viewReceipt(id) {
     navigator(`/transaksi/${id}/kwitansi`);
   }
+  function viewDetails(id) {
+    navigator(`/transaksi/${id}`);
+  }
 
   return (
     <div className="transaksi">
       <h2>Transaksi</h2>
 
-      <div>
+      {/* <div>
         <button
           onClick={() => setCreatePopupOpen(true)}
           className="btn btn-primary mx-2"
         >
           Create Transaksi
         </button>
-      </div>
+      </div> */}
 
       {isCreatePopupOpen && (
         <div className="popup-box">
@@ -667,7 +670,13 @@ const Transaksi = () => {
               <td>{request.totalPayment}</td>
 
               <td>
-                <button onClick={() => viewReceipt(request.id)}>View</button>
+                <button onClick={() => viewReceipt(request.id)}>Receipt</button>
+                <button
+                  onClick={() => viewDetails(request.id)}
+                  style={{ margin: "10px" }}
+                >
+                  View
+                </button>
                 <button
                   onClick={() => {
                     setDeletePopupOpen(true);

@@ -1,10 +1,9 @@
-import React from 'react';
-import { HiOutlineSun, HiOutlineMoon } from 'react-icons/hi';
-import { Button } from 'antd';
+import { Button } from "antd";
+import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi";
 
 const ToggleThemeButton = ({ darkTheme, toggleTheme }) => {
   return (
-    <div className='toggle-theme-btn'>
+    <div className="toggle-theme-btn">
       <Button onClick={toggleTheme}>
         {darkTheme ? <HiOutlineSun /> : <HiOutlineMoon />}
       </Button>

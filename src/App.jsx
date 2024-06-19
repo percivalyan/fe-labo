@@ -26,9 +26,11 @@ import Pelanggan from "./pages/Pelanggan";
 import Projek from "./pages/Projek";
 import Request from "./pages/Request";
 import Transaksi from "./pages/Transaksi";
+import TransaksiDetails from "./pages/TransaksiDetails.jsx";
 import PDFViewer from "./pages/pdf/PDFViewer";
 import BesiBending from "./pages/pengujian/BesiBending";
 import BesiBendingHasil from "./pages/pengujian/BesiBendingHasil";
+
 // import BesiBendingPDF from './pages/pdf/BesiBendingPDF';
 
 // dummy data
@@ -134,7 +136,15 @@ function App() {
               {/* Transaksi */}
               <Route path="/request" element={<Request />} />
               <Route path="/transaksi" element={<Transaksi />} />
+              <Route
+                path="/transaksi/:requestId"
+                element={<TransaksiDetails />}
+              />
               <Route path="/kwitansi" element={<Kwitansi />} />
+              <Route
+                path="/transaksi/:requestId/kwitansi"
+                element={<Kwitansi />}
+              />
               {/* Transaksi */}
 
               <Route path="/pdf" element={<PDFViewer />} />

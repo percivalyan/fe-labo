@@ -100,6 +100,11 @@ const MenuList = ({ darkTheme }) => {
         {
           key: "8",
           icon: <ShoppingCartOutlined />,
+          label: <Link to="/transaksi">History Permintaan</Link>,
+        },
+        {
+          key: "9",
+          icon: <ShoppingCartOutlined />,
           label: <Link to="/kwitansi">Kwitansi</Link>,
         },
       ],
