@@ -1,39 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from "react";
 // Import CSS
-import './App.css';
-import './assets/css/Layanan.css';
-import './assets/css/Kategori.css';
-import './assets/css/Pelanggan.css';
-import './assets/css/Projek.css';
-import './assets/css/Request.css';
-import './assets/css/Transaksi.css';
-import './assets/css/Kwitansi.css';
-import './assets/css/print.css';
-import './assets/css/landscape.css';
+import "./App.css";
+import "./assets/css/Kategori.css";
+import "./assets/css/Kwitansi.css";
+import "./assets/css/Layanan.css";
+import "./assets/css/Pelanggan.css";
+import "./assets/css/Projek.css";
+import "./assets/css/Request.css";
+import "./assets/css/Transaksi.css";
+import "./assets/css/landscape.css";
+import "./assets/css/print.css";
 // Import CSS
-import './assets/css/BesiBending.css';
-import { Layout, Button, theme } from 'antd';
-import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
-import Logo from './components/Logo';
-import MenuList from './components/MenuList';
-import ToggleThemeButton from './components/ToggleThemeButton';
-import Dashboard from './pages/Dashboard';
-import Layanan from './pages/Layanan';
-import Kategori from './pages/Kategori';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { Button, Layout, theme } from "antd";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Pelanggan from './pages/Pelanggan';
-import Projek from './pages/Projek';
-import Request from './pages/Request';
-import Transaksi from './pages/Transaksi';
-import Kwitansi from './pages/Kwitansi';
-import BesiBending from './pages/pengujian/BesiBending';
-import BesiBendingHasil from './pages/pengujian/BesiBendingHasil';
-import PDFViewer from './pages/pdf/PDFViewer';
+import "./assets/css/BesiBending.css";
+import Logo from "./components/Logo";
+import MenuList from "./components/MenuList";
+import ToggleThemeButton from "./components/ToggleThemeButton";
+import Dashboard from "./pages/Dashboard";
+import Kategori from "./pages/Kategori";
+import Kwitansi from "./pages/Kwitansi";
+import Layanan from "./pages/Layanan";
+import Pelanggan from "./pages/Pelanggan";
+import Projek from "./pages/Projek";
+import Request from "./pages/Request";
+import Transaksi from "./pages/Transaksi";
+import PDFViewer from "./pages/pdf/PDFViewer";
+import BesiBending from "./pages/pengujian/BesiBending";
+import BesiBendingHasil from "./pages/pengujian/BesiBendingHasil";
 // import BesiBendingPDF from './pages/pdf/BesiBendingPDF';
 
-
 // dummy data
-import Siswa from './assets/dummy_data/Siswa.jsx';
+// import Siswa from './assets/dummy_data/Siswa.jsx';
 
 const { Header, Sider, Content } = Layout;
 
@@ -55,10 +54,10 @@ function App() {
       setIsMobile(window.innerWidth < 768); // Update isMobile state based on window width
     };
 
-    window.addEventListener('resize', handleResize); // Listen for window resize event
+    window.addEventListener("resize", handleResize); // Listen for window resize event
 
     return () => {
-      window.removeEventListener('resize', handleResize); // Cleanup listener on component unmount
+      window.removeEventListener("resize", handleResize); // Cleanup listener on component unmount
     };
   }, []);
 
@@ -75,8 +74,8 @@ function App() {
     <BrowserRouter>
       <Layout>
         <Sider
-          theme={darkTheme ? 'dark' : 'light'}
-          className='sidebar'
+          theme={darkTheme ? "dark" : "light"}
+          className="sidebar"
           collapsed={collapsed}
           collapsible
           trigger={null} // Remove default trigger button
@@ -88,32 +87,44 @@ function App() {
           <ToggleThemeButton darkTheme={darkTheme} toggleTheme={toggleTheme} />
         </Sider>
         <Layout>
-          <Header className='header' style={{ padding: 0, background: colorBgContainer }}>
+          <Header
+            className="header"
+            style={{ padding: 0, background: colorBgContainer }}
+          >
             <Button
-              type='text'
-              className='toggle'
+              type="text"
+              className="toggle"
               onClick={toggleCollapse}
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             />
           </Header>
-          <Content style={{ margin: '24px 16px', padding: 24, background: colorBgContainer }}>
+          <Content
+            style={{
+              margin: "24px 16px",
+              padding: 24,
+              background: colorBgContainer,
+            }}
+          >
             <Routes>
               {/* Master */}
               <Route path="/" element={<Dashboard />} />
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path='/layanan' element={<Layanan />} />
+              <Route path="/layanan" element={<Layanan />} />
               <Route
                 path="/layanan/:serviceId/kategori"
                 element={<Kategori />}
               />
               <Route path="/kategori/list" element={<Kategori />} />
-              <Route path='/pelanggan' element={<Pelanggan />} />
-              <Route path='/projek' element={<Projek />} />
+              <Route path="/pelanggan" element={<Pelanggan />} />
+              <Route path="/projek" element={<Projek />} />
               {/* Master */}
 
               {/* Pengujian */}
-              <Route path='/besi-bending' element={<BesiBending />} />
-              <Route path='/besi-bending-hasil' element={<BesiBendingHasil />} />
+              <Route path="/besi-bending" element={<BesiBending />} />
+              <Route
+                path="/besi-bending-hasil"
+                element={<BesiBendingHasil />}
+              />
               {/* Pengujian */}
 
               {/* PDF */}
@@ -121,17 +132,16 @@ function App() {
               {/* PDF */}
 
               {/* Transaksi */}
-              <Route path='/request' element={<Request />} />
-              <Route path='/transaksi' element={<Transaksi />} />
-              <Route path='/kwitansi' element={<Kwitansi />} />
+              <Route path="/request" element={<Request />} />
+              <Route path="/transaksi" element={<Transaksi />} />
+              <Route path="/kwitansi" element={<Kwitansi />} />
               {/* Transaksi */}
 
-              <Route path='/pdf' element={<PDFViewer />} />
+              <Route path="/pdf" element={<PDFViewer />} />
             </Routes>
           </Content>
         </Layout>
       </Layout>
-      
     </BrowserRouter>
   );
 }

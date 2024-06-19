@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { listCustomers } from "../services/Customer";
 import { listMyServices } from "../services/MyServiceService";
 import { listProjects } from "../services/Project";
-import { createRequest } from "../services/Request";
+import { createRequest, getLast } from "../services/Request";
 import {
   getServiceType,
   listServiceTypeById,
@@ -13,6 +13,30 @@ import {
 const Request = () => {
   const [loadingServiceTypes, setLoadingServiceTypes] = useState(false);
   const [serviceTypePrice, setServiceTypePrice] = useState(0);
+  const [serviceTypeCode, setServiceTypeCode] = useState("");
+  const [monthNow, setMonthNow] = useState("");
+  const [yearNow, setYearNow] = useState("");
+  const [lastId, setLastId] = useState(0);
+
+  useEffect(() => {
+    getLast()
+      .then((response) => {
+        const latestId = response.data; // Assuming the response is the latest ID directly
+        setLastId(latestId + 1); // Increment the latest ID by 1
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    const date = new Date();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-based, so we add 1
+    const year = String(date.getFullYear());
+
+    setMonthNow(month);
+    setYearNow(year);
+    // Set initial value for requestCode
+    setRequestCode(`${lastId}/${serviceTypeCode}/ABS/${monthNow}/${yearNow}`);
+  }, [lastId, serviceTypeCode, monthNow, yearNow]);
 
   //FIELD Request START
   const [requestCode, setRequestCode] = useState("");
@@ -25,7 +49,7 @@ const Request = () => {
   const [selectedMyService, setSelectedMyService] = useState("");
   const [serviceTypes, setServiceTypes] = useState([]);
   const [selectedServiceType, setSelectedServiceType] = useState("");
-  const [price, setPrice] = useState("");
+  const [price] = useState("");
   // const [requestQTY, setRequestQTY] = useState(1);
   // const [totalAmount, setTotalAmount] = useState("");
   // const [mutuBeton, setMutuBeton] = useState("");
@@ -111,13 +135,16 @@ const Request = () => {
         .then((response) => {
           console.log("Property details:", response.data);
           setServiceTypePrice(response.data.price); // Assuming price is a property of the response data
+          setServiceTypeCode(response.data.serviceTypeCode);
         })
         .catch((error) => {
           console.error("Error fetching property details:", error);
           setServiceTypePrice("");
+          setServiceTypeCode("");
         });
     } else {
       setServiceTypePrice("");
+      setServiceTypeCode("");
     }
   }, [selectedServiceType]);
 
@@ -153,6 +180,16 @@ const Request = () => {
       errorsCopy.selectedCustomer = "Customer wajib di isi";
       valid = false;
     }
+    if (
+      selectedProject.trim() &&
+      !isNaN(selectedProject) &&
+      Number.isInteger(Number(selectedProject))
+    ) {
+      errorsCopy.selectedProject = "";
+    } else {
+      errorsCopy.selectedProject = "Project wajib di isi";
+      valid = false;
+    }
 
     setErrors(errorsCopy);
 
@@ -173,7 +210,7 @@ const Request = () => {
     selectedMyService: "",
     selectedServiceType: "",
     price: "",
-    requestQTY: "",
+    requestQTY: 1,
     totalAmount: "",
     mutuBeton: "",
     split: "",
@@ -181,8 +218,8 @@ const Request = () => {
     ageVariation: "",
   });
   let {
-    myServiceId,
-    serviceTypeId,
+    // myServiceId,
+    // serviceTypeId,
     requestQTY,
     totalAmount,
     mutuBeton,
@@ -191,8 +228,18 @@ const Request = () => {
     ageVariation,
   } = inputData;
 
+  // const handleChange = (e) => {
+  //   setInputData({ ...inputData, [e.target.name]: e.target.value });
+  // };
   const handleChange = (e) => {
-    setInputData({ ...inputData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    let validValue = value;
+
+    if (name === "requestQTY") {
+      validValue = Math.max(1, Number(value)); // Ensure the value is at least 1
+    }
+
+    setInputData({ ...inputData, [name]: validValue });
   };
 
   //Tombol Add Dynamic Input
@@ -215,15 +262,15 @@ const Request = () => {
       selectedMyService: "",
       selectedServiceType: "",
       price: "",
-      requestQTY: "",
+      requestQTY: 1,
       totalAmount: "",
       mutuBeton: "",
       split: "",
       semen: "",
       ageVariation: "",
     });
-    setSelectedMyService("");
-    setSelectedServiceType("");
+    // setSelectedMyService("");
+    // setSelectedServiceType("");
   };
 
   //Menghapus Dynamic Input
@@ -294,40 +341,15 @@ const Request = () => {
   }
 
   const navigator = useNavigate();
+
   //Fungsi menyimpan semua data
   function saveRequests(e) {
     e.preventDefault();
 
-    const request = {
-      requestCode,
-      customerId: selectedCustomer,
-      projectId: selectedProject,
-      dataRequest: dataRequests,
-      senderName,
-      recipientName,
-      totalPayment,
-      // dp,
-      // remainingDP,
-    };
-    console.log(request);
-    if (validateForm()) {
-      createRequest(request)
-        .then((response) => {
-          console.log(response.data);
-
-          // getAllRequests();
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+    if (dataRequests.length === 0) {
+      alert("Data Request tidak boleh kosong!");
+      return;
     }
-  }
-
-  const [requests, setRequests] = useState([]);
-  //Fungsi menyimpan semua data
-  function saveRequests(e) {
-    e.preventDefault();
-
     const request = {
       requestCode,
       customerId: selectedCustomer,
@@ -336,8 +358,6 @@ const Request = () => {
       senderName,
       recipientName,
       totalPayment,
-      // dp,
-      // remainingDP,
     };
     console.log(request);
     if (validateForm()) {
@@ -353,9 +373,95 @@ const Request = () => {
     }
   }
 
+  useEffect(() => {
+    const calculateTotalPayment = () => {
+      const total = dataRequests.reduce(
+        (sum, request) => sum + Number(request.totalAmount),
+        0
+      );
+      setTotalPayment(total);
+    };
+
+    calculateTotalPayment();
+  }, [dataRequests]);
+
   return (
     <div className="request">
       <div className="form-container">
+        <h2>Form Transaksi</h2>
+        <form>
+          {/* TRANSAKSI */}
+          <fieldset>
+            <legend>TRANSAKSI</legend>
+            <label>Kode Transaksi:</label>
+            <input
+              type="text"
+              placeholder="Masukkan Kode Transaksi Layanan"
+              className={`form-control ${
+                errors.requestCode ? "is-invalid" : ""
+              }`}
+              name="requestCode"
+              onChange={(e) => setRequestCode(e.target.value)}
+            ></input>
+            {errors.requestCode && (
+              <div className="invalid-feedback"> {errors.requestCode} </div>
+            )}
+            <label className="input" htmlFor="inputGroupSelect01">
+              Nama Pelanggan
+            </label>
+            <select
+              className={`custom-select ${
+                errors.selectedCustomer ? "is-invalid" : ""
+              }`}
+              id="inputGroupSelect01"
+              onChange={(e) => setSelectedCustomer(e.target.value)}
+            >
+              <option>Pilih Nama Pelanggan</option>
+              {customers.map((customer) => (
+                <option key={customer.idPelanggan} value={customer.idPelanggan}>
+                  {customer.namaPelanggan}
+                </option>
+              ))}
+            </select>
+            {errors.selectedCustomer && (
+              <div className="invalid-feedback">
+                {" "}
+                {errors.selectedCustomer}{" "}
+              </div>
+            )}
+            <label className="input" htmlFor="inputGroupSelect02">
+              Nama Projek
+            </label>
+            <select
+              className="custom-select"
+              id="inputGroupSelect02"
+              onChange={(e) => setSelectedProject(e.target.value)}
+            >
+              <option defaultValue="">Pilih Projek</option>
+              {projects.map((project) => (
+                <option key={project.idProjek} value={project.idProjek}>
+                  {project.namaProjek}
+                </option>
+              ))}
+            </select>
+            <label className="input">Nama Pengirim</label>
+            <input
+              type="text"
+              placeholder="Masukkan Nama Pengirim"
+              className="form-control"
+              name="senderName"
+              onChange={(e) => setSenderName(e.target.value)}
+            ></input>
+            <label className="input">Nama Penerima</label>
+            <input
+              type="text"
+              placeholder="Masukkan Nama Penerima"
+              className="form-control"
+              name="recipientName"
+              onChange={(e) => setRecipientName(e.target.value)}
+            />
+          </fieldset>
+        </form>
         <fieldset>
           <legend>PILIH LAYANAN</legend>
 
@@ -391,7 +497,8 @@ const Request = () => {
             <option value="">Pilih Nama Kategori Layanan</option>
             {serviceTypes.map((serviceType) => (
               <option key={serviceType.id} value={serviceType.id}>
-                {serviceType.serviceTypeCode} -{serviceType.serviceTypeName}
+                {serviceType.serviceTypeCode} - {serviceType.serviceTypeName} -{" "}
+                {serviceType.size} - Rp. {serviceType.price}
               </option>
             ))}
           </select>
@@ -488,84 +595,8 @@ const Request = () => {
       </div>
       <div className="table-container">
         <div className="form-container">
-          <h2>Form Transaksi</h2>
+          {/* PEMBAYARAN */}
           <form>
-            {/* TRANSAKSI */}
-            <fieldset>
-              <legend>TRANSAKSI</legend>
-              <label>Kode Transaksi:</label>
-              <input
-                type="text"
-                placeholder="Masukkan Kode Transaksi Layanan"
-                className={`form-control ${
-                  errors.requestCode ? "is-invalid" : ""
-                }`}
-                name="requestCode"
-                onChange={(e) => setRequestCode(e.target.value)}
-              ></input>
-              {errors.requestCode && (
-                <div className="invalid-feedback"> {errors.requestCode} </div>
-              )}
-              <label className="input" htmlFor="inputGroupSelect01">
-                Nama Pelanggan
-              </label>
-              <select
-                className={`custom-select ${
-                  errors.selectedCustomer ? "is-invalid" : ""
-                }`}
-                id="inputGroupSelect01"
-                onChange={(e) => setSelectedCustomer(e.target.value)}
-              >
-                <option>Pilih Nama Pelanggan</option>
-                {customers.map((customer) => (
-                  <option
-                    key={customer.idPelanggan}
-                    value={customer.idPelanggan}
-                  >
-                    {customer.namaPelanggan}
-                  </option>
-                ))}
-              </select>
-              {errors.selectedCustomer && (
-                <div className="invalid-feedback">
-                  {" "}
-                  {errors.selectedCustomer}{" "}
-                </div>
-              )}
-              <label className="input" htmlFor="inputGroupSelect02">
-                Nama Projek
-              </label>
-              <select
-                className="custom-select"
-                id="inputGroupSelect02"
-                onChange={(e) => setSelectedProject(e.target.value)}
-              >
-                <option defaultValue="">Pilih Projek</option>
-                {projects.map((project) => (
-                  <option key={project.idProjek} value={project.idProjek}>
-                    {project.namaProjek}
-                  </option>
-                ))}
-              </select>
-              <label className="input">Nama Pengirim</label>
-              <input
-                type="text"
-                placeholder="Masukkan Nama Pengirim"
-                className="form-control"
-                name="senderName"
-                onChange={(e) => setSenderName(e.target.value)}
-              ></input>
-              <label className="input">Nama Penerima</label>
-              <input
-                type="text"
-                placeholder="Masukkan Nama Penerima"
-                className="form-control"
-                name="recipientName"
-                onChange={(e) => setRecipientName(e.target.value)}
-              />
-            </fieldset>
-
-            {/* PEMBAYARAN */}
             <fieldset>
               <legend>PEMBAYARAN</legend>
               <label>TOTAL:</label>

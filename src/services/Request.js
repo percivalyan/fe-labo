@@ -24,3 +24,7 @@ export const getRequest = (id) => {
 //DELETE Permintaan
 // DELETE "http://localhost:8080/api/transactions/request/1";
 export const deleteRequest = (id) => axios.delete(REST_API_BASE_URL + "/" + id);
+
+//GET Last ID Permintaan
+// DELETE "http://localhost:8080/api/transactions/request/last";
+export const getLast = () => axios.get(REST_API_BASE_URL + "/last");
