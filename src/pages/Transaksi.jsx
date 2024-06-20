@@ -303,6 +303,9 @@ const Transaksi = () => {
   function viewDetails(id) {
     navigator(`/transaksi/${id}`);
   }
+  function viewForm(id) {
+    navigator(`/${id}/besi-bending`);
+  }
 
   return (
     <div className="transaksi">
@@ -676,6 +679,12 @@ const Transaksi = () => {
                   style={{ margin: "10px" }}
                 >
                   View
+                </button>
+                <button
+                  onClick={() => viewForm(request.id)}
+                  style={{ margin: "10px" }}
+                >
+                  Print
                 </button>
                 <button
                   onClick={() => {

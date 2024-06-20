@@ -124,7 +124,11 @@ function App() {
               {/* Pengujian */}
               <Route path="/besi-bending" element={<BesiBending />} />
               <Route
-                path="/besi-bending-hasil"
+                path="/:requestId/besi-bending"
+                element={<BesiBending />}
+              />
+              <Route
+                path="/:headerVIAId/besi-bending-hasil"
                 element={<BesiBendingHasil />}
               />
               {/* Pengujian */}

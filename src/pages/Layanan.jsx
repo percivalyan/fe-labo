@@ -9,8 +9,8 @@ import {
   updateMyService,
 } from "../services/MyServiceService";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrashAlt, faEye } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faEye, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Layanan = () => {
   const [myServices, setMyServices] = useState([]);
@@ -137,7 +137,6 @@ const Layanan = () => {
   const [isCreatePopupOpen, setCreatePopupOpen] = useState(false);
   const [isUpdatePopupOpen, setUpdatePopupOpen] = useState(false);
   const [isDeletePopupOpen, setDeletePopupOpen] = useState(false);
-  
 
   const handleEdit = (id) => {
     const selectedService = myServices.find((service) => service.id === id);
@@ -253,58 +252,57 @@ const Layanan = () => {
       )}
 
       <table>
-  <thead>
-    <tr>
-      <th>Kode Layanan</th>
-      <th>Nama Layanan</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {myServices.map((myService) => (
-      <tr key={myService.id}>
-        <td>{myService.serviceCode}</td>
-        <td>{myService.serviceName}</td>
-        <td>
-          {/* <button onClick={() => handleEdit(myService.id)}>
-            <i className="fas fa-edit"></i> Edit
-          </button>
-          <button onClick={() => setDeletePopupOpen(true)}>
-            <i className="fas fa-trash-alt"></i> Delete
-          </button>
-          <button onClick={() => viewServiceType(myService.id)} style={{ margin: "10px" }}>
-            <i className="fas fa-eye"></i> View
-          </button> */}
-          <button onClick={() => handleEdit(myService.id)}>
-  <FontAwesomeIcon icon={faEdit} />
-</button>
+        <thead>
+          <tr>
+            <th>Kode Layanan</th>
+            <th>Nama Layanan</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {myServices.map((myService) => (
+            <tr key={myService.id}>
+              <td>{myService.serviceCode}</td>
+              <td>{myService.serviceName}</td>
+              <td>
+                <button onClick={() => handleEdit(myService.id)}>
+                  <FontAwesomeIcon icon={faEdit} />
+                </button>
 
-<button onClick={() => setDeletePopupOpen(true)}>
-  <FontAwesomeIcon icon={faTrashAlt} />
-</button>
+                <button onClick={() => setDeletePopupOpen(true)}>
+                  <FontAwesomeIcon icon={faTrashAlt} />
+                </button>
 
-<button onClick={() => viewServiceType(myService.id)} style={{ margin: "1px" }}>
-  <FontAwesomeIcon icon={faEye} />
-</button>
-          {isDeletePopupOpen && (
-            <div className="popup-box">
-              <div className="popup">
-                <h3>Delete Layanan</h3>
-                <p>Are you sure you want to delete this service?</p>
-                <button onClick={() => removeMyService(myService.id)}>Yes</button>
-                <button onClick={() => {
-                  setServiceId("");
-                  setDeletePopupOpen(false);
-                }}>No</button>
-              </div>
-            </div>
-          )}
-        </td>
-      </tr>
-    ))}
-  </tbody>
-</table>
-
+                <button
+                  onClick={() => viewServiceType(myService.id)}
+                  style={{ margin: "1px" }}
+                >
+                  <FontAwesomeIcon icon={faEye} />
+                </button>
+                {isDeletePopupOpen && (
+                  <div className="popup-box">
+                    <div className="popup">
+                      <h3>Delete Layanan</h3>
+                      <p>Are you sure you want to delete this service?</p>
+                      <button onClick={() => removeMyService(myService.id)}>
+                        Yes
+                      </button>
+                      <button
+                        onClick={() => {
+                          setServiceId("");
+                          setDeletePopupOpen(false);
+                        }}
+                      >
+                        No
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

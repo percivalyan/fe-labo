@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { createReceipt, listReceipt } from "../services/Receipt";
 import { getRequest } from "../services/Request";
@@ -13,6 +13,7 @@ const Kwitansi = () => {
   const [dp, setDp] = useState(0);
 
   const [payment, setPayment] = useState(0);
+  const [totalPayment, setTotalPayment] = useState(0);
 
   const { requestId } = useParams();
   const navigator = useNavigate();
@@ -61,6 +62,8 @@ const Kwitansi = () => {
         .then((response) => {
           console.log(response.data);
           setCreatePopupOpen(false);
+          setTotalPayment("");
+          setReceiptNumber("");
           navigator("/kwitansi");
           getAllReceipt();
         })
@@ -98,11 +101,13 @@ const Kwitansi = () => {
         .then((response) => {
           console.log(requestId);
           console.log("Property details:", response);
-          setPayment(response.totalPayment);
+          setTotalPayment(response.totalPayment);
+          setReceiptNumber(response.requestCode);
         })
         .catch((error) => {
           console.error("Error fetching property details:", error);
-          setPayment("");
+          setTotalPayment("");
+          setReceiptNumber("");
         });
     } else {
       getAllReceipt();
@@ -207,19 +212,33 @@ const Kwitansi = () => {
   //   }
   // };
 
+  function showCreate() {
+    if (requestId) {
+      return (
+        <div>
+          <center>
+            <h2>
+              Kwitansi <br />
+              {receiptNumber}
+            </h2>
+          </center>
+          <button
+            onClick={() => setCreatePopupOpen(true)}
+            className="btn btn-primary mx-2"
+          >
+            Create Kwitansi
+          </button>
+        </div>
+      );
+    } else {
+      return <h2>List Kwitansi</h2>;
+    }
+  }
+
   return (
     <div className="kwitansi">
       <h2>Kwitansi</h2>
-
-      <div>
-        <button
-          onClick={() => setCreatePopupOpen(true)}
-          className="btn btn-primary mx-2"
-        >
-          Create Kwitansi
-        </button>
-      </div>
-
+      {showCreate()}
       {isCreatePopupOpen && (
         <div className="popup-box">
           <div className="popup">
@@ -228,11 +247,12 @@ const Kwitansi = () => {
               type="text"
               placeholder="Masukkan Nomor Kwitansi"
               name="receiptNumber"
-              // value={receiptNumber}
+              value={receiptNumber}
               className={`form-control ${
                 errors.receiptNumber ? "is-invalid" : ""
               }`}
               onChange={(e) => setReceiptNumber(e.target.value)}
+              disabled
             ></input>
             {errors.receiptNumber && (
               <div className="invalid-feedback"> {errors.receiptNumber} </div>
@@ -252,19 +272,19 @@ const Kwitansi = () => {
             )}
             <input
               type="text"
-              placeholder="Masukkan dp"
-              name="dp"
-              // value={dp}
+              placeholder="Masukkan payment"
+              name="payment"
+              // value={payment}
               className="form-control"
-              onChange={(e) => setDp(e.target.value)}
+              onChange={(e) => setPayment(e.target.value)}
             ></input>
             <input
               type="text"
-              placeholder="Masukkan payment"
-              name="payment"
-              value={payment}
+              placeholder="Total Yang Harus di bayarkan"
+              name="totalPayment"
+              value={totalPayment}
               className="form-control"
-              onChange={(e) => setPayment(e.target.value)}
+              // onChange={(e) => setPayment(e.target.value)}
               disabled
             ></input>
 

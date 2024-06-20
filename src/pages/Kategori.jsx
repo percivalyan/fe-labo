@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import { getMyService } from "../services/MyServiceService";
 import {
   createServiceType,
   deleteServiceType,
@@ -49,6 +49,22 @@ const Kategori = () => {
         });
     }
   }
+
+  const [serviceCode, setServiceCode] = useState("");
+  const [serviceName, setServiceName] = useState("");
+
+  useEffect(() => {
+    if (serviceId) {
+      getMyService(serviceId)
+        .then((response) => {
+          setServiceCode(response.serviceCode);
+          setServiceName(response.serviceName);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [serviceId]);
 
   // Respon data semua
   function getAllServiceTypes() {
@@ -198,20 +214,17 @@ const Kategori = () => {
     setDeletePopupOpen(true);
   };
 
-  // fungsinya untuk merubah nama form agar form nya bisa reusable
-  function pageTitle() {
-    if (serviceId) {
-      return <h2 className="text-center"> Kategori Layanan 1 </h2>;
-    } else {
-      return <h2 className="text-center"> Kategori Semua Layanan </h2>;
-    }
-  }
-
   //menampilkan create button
   function showCreate() {
     if (serviceId) {
       return (
         <div>
+          <center>
+            <h2 className="text-center">
+              Kategori Layanan <br />
+              {serviceCode} - {serviceName}
+            </h2>
+          </center>
           <button
             onClick={() => {
               setSelectedId("");
@@ -224,14 +237,14 @@ const Kategori = () => {
         </div>
       );
     } else {
-      return <h2> Kategori</h2>;
+      return <h2> List All Kategori</h2>;
     }
   }
 
   return (
     <div className="kategori">
       {/* <h2>Kategori Layanan</h2> */}
-      {pageTitle()}
+
       {showCreate()}
 
       {isCreatePopupOpen && (
@@ -264,14 +277,14 @@ const Kategori = () => {
             {errors.serviceTypeName && (
               <div className="invalid-feedback"> {errors.serviceTypeName} </div>
             )}
-            <input
+            <textarea
               type="text"
               placeholder="Masukkan Referensi"
               name="reference"
               // value={reference}
               className="form-control"
               onChange={(e) => setReference(e.target.value)}
-            ></input>
+            ></textarea>
             <input
               type="text"
               placeholder="Masukkan Ukuran"
@@ -324,14 +337,14 @@ const Kategori = () => {
             {errors.serviceTypeName && (
               <div className="invalid-feedback"> {errors.serviceTypeName} </div>
             )}
-            <input
+            <textarea
               type="text"
               placeholder="Masukkan Referensi"
               name="reference"
               value={reference}
               className="form-control"
               onChange={(e) => setReference(e.target.value)}
-            ></input>
+            ></textarea>
             <input
               type="text"
               placeholder="Masukkan Ukuran"
@@ -379,7 +392,7 @@ const Kategori = () => {
               <td>{serviceType.serviceTypeName}</td>
               <td>{serviceType.reference}</td>
               <td>{serviceType.size}</td>
-              <td>{serviceType.price}</td>
+              <td>Rp. {serviceType.price}</td>
               <td>
                 <button
                   onClick={() => {
@@ -387,13 +400,6 @@ const Kategori = () => {
                   }}
                 >
                   Edit
-                </button>
-                <button
-                  onClick={() => {
-                    openDeletePopup(serviceType.id);
-                  }}
-                >
-                  Delete
                 </button>
                 <button
                   onClick={() => {
