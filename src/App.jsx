@@ -30,6 +30,7 @@ import TransaksiDetails from "./pages/TransaksiDetails.jsx";
 import PDFViewer from "./pages/pdf/PDFViewer";
 import BesiBending from "./pages/pengujian/BesiBending";
 import BesiBendingHasil from "./pages/pengujian/BesiBendingHasil";
+import ListBesiBendingHasil from "./pages/pengujian/ListBesiBendingHasil.jsx";
 
 // import BesiBendingPDF from './pages/pdf/BesiBendingPDF';
 
@@ -131,6 +132,10 @@ function App() {
                 path="/:headerVIAId/besi-bending-hasil"
                 element={<BesiBendingHasil />}
               />
+              <Route
+                path="/besi-bending/:headerVIAId/hasil-list"
+                element={<ListBesiBendingHasil />}
+              />
               {/* Pengujian */}
 
               {/* PDF */}
@@ -151,7 +156,7 @@ function App() {
               />
               {/* Transaksi */}
 
-              <Route path="/pdf" element={<PDFViewer />} />
+              <Route path="/pdf/:headerVIAId/print" element={<PDFViewer />} />
             </Routes>
           </Content>
         </Layout>

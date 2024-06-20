@@ -1,167 +1,235 @@
 /* besiBending */
 .besiBending {
-    padding: 20px;
+  padding: 20px;
 }
 
 .besiBending h2 {
-    margin-bottom: 20px;
-    color: var(--primary-color);
+  margin-bottom: 20px;
+  color: var(--primary-color);
 }
 
 .besiBending .btn {
-    background-color: var(--primary-color);
-    color: var(--tersier-color);
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  background-color: var(--primary-color);
+  color: var(--tersier-color);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .besiBending .btn-primary {
-    background-color: var(--primary-color);
+  background-color: var(--primary-color);
 }
 
 .besiBending .btn-secondary {
-    background-color: var(--secondary-color);
+  background-color: var(--secondary-color);
 }
 
 .besiBending .btn:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .besiBending .popup-box {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .besiBending .popup {
-    background-color: var(--tersier-color);
-    padding: 30px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    width: 50%; /* Default width */
+  background-color: var(--tersier-color);
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  width: 50%; /* Default width */
 }
 
 .besiBending .popup h3 {
-    margin-bottom: 10px;
-    color: var(--primary-color);
+  margin-bottom: 10px;
+  color: var(--primary-color);
 }
 
 .besiBending .popup input[type="text"],
 .besiBending .popup input[type="email"],
 .besiBending .popup input[type="date"],
 .besiBending .popup input[type="number"] {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .besiBending .popup button {
-    padding: 10px 20px;
-    margin-right: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .besiBending table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
 
 .besiBending table th,
 .besiBending table td {
-    border: 1px solid #ccc;
-    padding: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
 }
 
 .besiBending table th {
-    background-color: var(--primary-color);
-    color: var(--tersier-color);
+  background-color: var(--primary-color);
+  color: var(--tersier-color);
 }
 
 .besiBending table td {
-    text-align: center;
+  text-align: center;
 }
 
 .besiBending table button {
-    background-color: var(--secondary-color);
-    color: var(--tersier-color);
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 5px;
+  background-color: var(--secondary-color);
+  color: var(--tersier-color);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
 }
 
 .besiBending table button:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 /* Responsif untuk tampilan ponsel */
 @media screen and (max-width: 600px) {
-    .besiBending .popup {
-        width: 80%; /* Mengisi 80% lebar layar */
-        padding: 20px; /* Kurangi padding untuk layar kecil */
-    }
+  .besiBending .popup {
+    width: 80%; /* Mengisi 80% lebar layar */
+    padding: 20px; /* Kurangi padding untuk layar kecil */
+  }
 
-    .besiBending table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
+  .besiBending table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 
-    .besiBending table th,
-    .besiBending table td {
-        white-space: nowrap;
-    }
+  .besiBending table th,
+  .besiBending table td {
+    white-space: nowrap;
+  }
 }
 
 /* Responsif untuk tampilan tablet */
 @media screen and (min-width: 601px) and (max-width: 1024px) {
-    .besiBending .popup {
-        width: 70%; /* Mengisi 70% lebar layar */
-    }
+  .besiBending .popup {
+    width: 70%; /* Mengisi 70% lebar layar */
+  }
 }
 
 /* Responsif untuk tampilan iPad */
 @media screen and (min-width: 1025px) and (max-width: 1200px) {
-    .besiBending .popup {
-        width: 60%; /* Mengisi 60% lebar layar */
-    }
+  .besiBending .popup {
+    width: 60%; /* Mengisi 60% lebar layar */
+  }
 }
 
 /* Responsif untuk tampilan PC */
 @media screen and (min-width: 1201px) {
-    .besiBending .popup {
-        width: 50%; /* Mengisi 50% lebar layar */
-    }
+  .besiBending .popup {
+    width: 50%; /* Mengisi 50% lebar layar */
+  }
 }
 
 /* Responsif untuk tampilan laptop/PC pada rentang 597px hingga 839px */
 @media screen and (min-width: 597px) and (max-width: 839px) {
-    .besiBending .popup {
-        width: 70%; /* Mengisi 70% lebar layar */
-    }
+  .besiBending .popup {
+    width: 70%; /* Mengisi 70% lebar layar */
+  }
 
-    .besiBending table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
+  .besiBending table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 
-    .besiBending table th,
-    .besiBending table td {
-        white-space: nowrap;
-    }
+  .besiBending table th,
+  .besiBending table td {
+    white-space: nowrap;
+  }
+}
+
+.form-container {
+  border: 1px solid var(--primary-color);
+  padding: 20px;
+  border-radius: 5px;
+  width: 25%; /* 1/4 space */
+  box-sizing: border-box; /* Memastikan padding tidak mempengaruhi lebar elemen */
+}
+
+.form-container h2 {
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container fieldset {
+  border: 1px solid var(--primary-color);
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+.form-container legend {
+  font-weight: bold;
+  padding: 0 5px;
+  color: var(--primary-color);
+}
+
+.form-container label {
+  margin-bottom: 5px;
+  color: var(--primary-color);
+}
+
+.form-container input[type="text"],
+.form-container input[type="number"],
+.form-container select {
+  width: calc(100% - 10px);
+  padding: 5px;
+  margin-bottom: 10px; /* Mengubah margin-bottom dari 0px ke 10px untuk konsistensi */
+  border: 1px solid var(--primary-color);
+  border-radius: 3px;
+}
+
+.form-container input[readonly] {
+  background-color: var(--tersier-color);
+}
+
+.form-container button {
+  padding: 10px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.form-container button[type="button"] {
+  background-color: var(--secondary-color);
+  color: var(--tersier-color);
+}
+
+.form-container button[type="button"]:hover {
+  opacity: 0.8;
 }

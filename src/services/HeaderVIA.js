@@ -7,7 +7,7 @@ const REST_API_BASE_URL = "http://localhost:8080/api/form";
 export const createHeaderVIA = (requestId, headerVIA) =>
   axios.post(REST_API_BASE_URL + "/" + requestId + "/via", headerVIA);
 
-//READ ALL LIST
+//READ list by req id
 // GET "http://localhost:8080/api/services/list";
 // export const listMyServices = () => axios.get(REST_API_BASE_URL + "/list");
 export const getHeaderVIAbyReqId = (requestId) => {
@@ -21,7 +21,7 @@ export const getHeaderVIAbyReqId = (requestId) => {
 };
 //READ by ID
 // GET "http://localhost:8080/api/form/via/3";
-export const getHeaderVIA = (headerVIAId) => {
+export const getHeaderVIAById = (headerVIAId) => {
   return axios
     .get(REST_API_BASE_URL + "/via" + "/" + headerVIAId)
     .then((response) => {

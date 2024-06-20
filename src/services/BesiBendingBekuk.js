@@ -1,11 +1,21 @@
 import axios from "axios";
-
+//Arfan edit
 const REST_API_BASE_URL = "http://localhost:8080/api/form";
 
 // CREATE
 // POST "http://localhost:8080/api/form/3/via";
 export const createBesiBendingBekuk = (id, besiBendingBekuk) =>
   axios.post(REST_API_BASE_URL + "/via" + "/" + id, besiBendingBekuk);
+
+export const getBesiBendingBekukByHeaderId = (headerVIAId) => {
+  return axios
+    .get(REST_API_BASE_URL + "/via" + "/" + headerVIAId + "/data")
+    .then((response) => {
+      // Cetak response di console
+      console.log(response);
+      return response.data;
+    });
+};
 
 // //READ ALL LIST
 // // GET "http://localhost:8080/api/services/list";

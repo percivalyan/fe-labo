@@ -684,7 +684,7 @@ const Transaksi = () => {
                   onClick={() => viewForm(request.id)}
                   style={{ margin: "10px" }}
                 >
-                  Print
+                  Form
                 </button>
                 <button
                   onClick={() => {

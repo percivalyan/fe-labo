@@ -189,6 +189,9 @@ const BesiBending = () => {
       return <h2> List All Besi Bending</h2>;
     }
   }
+  function listHasil(id) {
+    navigator(`/besi-bending/${id}/hasil-list`);
+  }
 
   return (
     <div className="besiBending">
@@ -416,6 +419,7 @@ const BesiBending = () => {
               </button>
               {/* Tolong ini buatkan agar bisa ambil id dari idBesiBending */}
               <button onClick={() => viewHasil(headerVIAs.id)}>Hasil</button>
+              <button onClick={() => listHasil(headerVIAs.id)}>List</button>
               {/* Tolong ini buatkan agar bisa ambil id dari idBesiBending */}
             </td>
           </tr>

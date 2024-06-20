@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { createBesiBendingBekuk } from "../../services/BesiBendingBekuk";
 
 const BesiBendingHasil = () => {
   const [besiBendings, setBesiBendings] = useState([]);
   const [besiBendingId, setBesiBendingId] = useState("");
-  // const [code, setCode] = useState("");
-  // const [grade, setGrade] = useState("");
-  // const [nominalDiameter, setNominalDiameter] = useState("");
-  // const [pinDiameter, setPinDiameter] = useState("");
-  // const [joinDistance, setJoinDistance] = useState("");
-  // const [angleOfBend, setAngleOfBend] = useState("");
-  // const [maxForce, setMaxForce] = useState("");
-  // const [visualDescription, setVisualDescription] = useState("");
+  const [code, setCode] = useState("");
+  const [grade, setGrade] = useState("");
+  const [nominalDiameter, setNominalDiameter] = useState("");
+  const [pinDiameter, setPinDiameter] = useState("");
+  const [joinDistance, setJoinDistance] = useState("");
+  const [angleOfBend, setAngleOfBend] = useState("");
+  const [maxForce, setMaxForce] = useState("");
+  const [visualDescription, setVisualDescription] = useState("");
 
   const { headerVIAId } = useParams();
   // const [errors, setErrors] = useState({
@@ -47,26 +47,26 @@ const BesiBendingHasil = () => {
   //   return valid;
   // }
 
-  const navigator = useNavigate();
-
   function saveData(e) {
     e.preventDefault();
     if (besiBendingBekuks.length === 0) {
       alert("Data Request tidak boleh kosong!");
       return;
     }
-    const dataToSave = besiBendingBekuks.map((item) => ({
-      code: item.code,
-      grade: item.grade,
-      nominalDiameter: item.nominalDiameter,
-      pinDiameter: item.pinDiameter,
-      joinDistance: item.joinDistance,
-      angleOfBend: item.angleOfBend,
-      maxForce: item.maxForce,
-      visualDescription: item.visualDescription,
-    }));
+    const besiBendingBekuk = [
+      {
+        code,
+        grade,
+        nominalDiameter: parseFloat(nominalDiameter),
+        pinDiameter: parseFloat(pinDiameter),
+        joinDistance: parseFloat(joinDistance),
+        angleOfBend: parseFloat(angleOfBend),
+        maxForce: parseFloat(maxForce),
+        visualDescription,
+      },
+    ];
     if (headerVIAId) {
-      createBesiBendingBekuk(headerVIAId, dataToSave)
+      createBesiBendingBekuk(headerVIAId, besiBendingBekuk)
         .then((response) => {
           console.log(response.data);
           navigator("/pdf");
@@ -81,46 +81,28 @@ const BesiBendingHasil = () => {
 
   const [besiBendingBekuks, setBesiBendingBekuks] = useState([]);
   let [inputData, setInputData] = useState({
-    code: "",
-    grade: "",
-    nominalDiameter: "",
-    pinDiameter: "",
-    joinDistance: "",
-    angleOfBend: "",
-    maxForce: "",
-    visualDescription: "",
-  });
-  let {
     code,
     grade,
-    nominalDiameter,
-    pinDiameter,
-    joinDistance,
-    angleOfBend,
-    maxForce,
+    nominalDiameter: parseFloat(nominalDiameter),
+    pinDiameter: parseFloat(pinDiameter),
+    joinDistance: parseFloat(joinDistance),
+    angleOfBend: parseFloat(angleOfBend),
+    maxForce: parseFloat(maxForce),
     visualDescription,
-  } = inputData;
-
-  let [index, setIndex] = useState();
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setInputData({ ...inputData, [name]: value });
-  };
-
+  });
   //Tombol Add Dynamic Input
-  const handleClick = () => {
+  const addData = () => {
     setBesiBendingBekuks([
       ...besiBendingBekuks,
       {
-        code: inputData.code,
-        grade: inputData.grade,
-        nominalDiameter: parseFloat(inputData.nominalDiameter),
-        pinDiameter: parseFloat(inputData.pinDiameter),
-        joinDistance: parseFloat(inputData.joinDistance),
-        angleOfBend: parseFloat(inputData.angleOfBend),
-        maxForce: parseFloat(inputData.maxForce),
-        visualDescription: inputData.visualDescription,
+        code,
+        grade,
+        nominalDiameter: parseFloat(nominalDiameter),
+        pinDiameter: parseFloat(pinDiameter),
+        joinDistance: parseFloat(joinDistance),
+        angleOfBend: parseFloat(angleOfBend),
+        maxForce: parseFloat(maxForce),
+        visualDescription,
       },
     ]);
     setInputData({
@@ -141,6 +123,12 @@ const BesiBendingHasil = () => {
     const deleteVal = [...besiBendingBekuks];
     deleteVal.splice(i, 1);
     setBesiBendingBekuks(deleteVal);
+  };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    let validValue = value;
+
+    setInputData({ ...inputData, [name]: validValue });
   };
 
   // const handleEdit = (id) => {
@@ -168,16 +156,15 @@ const BesiBendingHasil = () => {
     <div className="besiBending">
       <div className="form-container">
         <h2>Hasil Besi Bending</h2>
-        <form>
+        <form onSubmit={addData}>
           <fieldset>
             <label htmlFor="code">Code:</label>
             <input
               type="text"
               id="code"
               name="code"
-              value={code || inputData.code}
-              onChange={handleChange}
-              className="form-control"
+              value={code}
+              onChange={(e) => setCode(e.target.value)}
               required
             />
 
@@ -186,9 +173,8 @@ const BesiBendingHasil = () => {
               type="text"
               id="grade"
               name="grade"
-              value={grade || inputData.grade}
-              onChange={handleChange}
-              className="form-control"
+              value={grade}
+              onChange={(e) => setGrade(e.target.value)}
               required
             />
 
@@ -197,9 +183,8 @@ const BesiBendingHasil = () => {
               type="number"
               id="nominalDiameter"
               name="nominalDiameter"
-              value={nominalDiameter || inputData.nominalDiameter}
-              onChange={handleChange}
-              className="form-control"
+              value={nominalDiameter}
+              onChange={(e) => setNominalDiameter(e.target.value)}
               required
             />
 
@@ -208,9 +193,8 @@ const BesiBendingHasil = () => {
               type="number"
               id="pinDiameter"
               name="pinDiameter"
-              value={pinDiameter || inputData.pinDiameter}
-              onChange={handleChange}
-              className="form-control"
+              value={pinDiameter}
+              onChange={(e) => setPinDiameter(e.target.value)}
               required
             />
 
@@ -219,9 +203,8 @@ const BesiBendingHasil = () => {
               type="number"
               id="joinDistance"
               name="joinDistance"
-              value={joinDistance || inputData.joinDistance}
-              onChange={handleChange}
-              className="form-control"
+              value={joinDistance}
+              onChange={(e) => setJoinDistance(e.target.value)}
               required
             />
 
@@ -230,9 +213,8 @@ const BesiBendingHasil = () => {
               type="number"
               id="angleOfBend"
               name="angleOfBend"
-              value={angleOfBend || inputData.angleOfBend}
-              onChange={handleChange}
-              className="form-control"
+              value={angleOfBend}
+              onChange={(e) => setAngleOfBend(e.target.value)}
               required
             />
 
@@ -241,10 +223,9 @@ const BesiBendingHasil = () => {
               type="number"
               id="maxForce"
               name="maxForce"
-              value={maxForce || inputData.maxForce}
-              onChange={handleChange}
+              value={maxForce}
+              onChange={(e) => setMaxForce(e.target.value)}
               required
-              className="form-control"
             />
 
             <label htmlFor="visualDescription">Visual Description:</label>
@@ -252,13 +233,12 @@ const BesiBendingHasil = () => {
               type="text"
               id="visualDescription"
               name="visualDescription"
-              value={visualDescription || inputData.visualDescription}
-              onChange={handleChange}
-              className="form-control"
+              value={visualDescription}
+              onChange={(e) => setVisualDescription(e.target.value)}
               required
             />
 
-            <button onClick={handleClick}>ADD DATA</button>
+            <button type="submit">ADD DATA</button>
           </fieldset>
         </form>
       </div>
@@ -385,8 +365,8 @@ const BesiBendingHasil = () => {
             besiBendingBekuks.map((besiBending, index) => (
               <tr key={index}>
                 {/* <td>{besiBending.index}</td> */}
-                <td>{besiBending.code}</td>
-                <td>{besiBending.grade}</td>
+                <td>{besiBending.Code}</td>
+                <td>{besiBending.GRADE}</td>
                 <td>{besiBending.nominalDiameter}</td>
                 <td>{besiBending.pinDiameter}</td>
                 <td>{besiBending.joinDistance}</td>
@@ -410,7 +390,6 @@ const BesiBendingHasil = () => {
             ))}
         </tbody>
       </table>
-      <button onClick={saveData}>SAVE DATA</button>
 
       {/* {isDeletePopupOpen && (
         <div className="popup-box">
