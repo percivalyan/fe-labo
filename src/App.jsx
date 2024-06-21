@@ -19,23 +19,20 @@ import Logo from "./components/Logo";
 import MenuList from "./components/MenuList";
 import ToggleThemeButton from "./components/ToggleThemeButton";
 import Dashboard from "./pages/Dashboard";
-import Kategori from "./pages/Kategori";
 import Kwitansi from "./pages/Kwitansi";
-import Layanan from "./pages/Layanan";
-import Pelanggan from "./pages/Pelanggan";
-import Projek from "./pages/Projek";
 import Request from "./pages/Request";
 import Transaksi from "./pages/Transaksi";
 import TransaksiDetails from "./pages/TransaksiDetails.jsx";
+import BesiBending from "./pages/VIA/BesiBending";
+import BesiBendingHasil from "./pages/VIA/BesiBendingHasil";
+import ListBesiBendingHasil from "./pages/VIA/ListBesiBendingHasil.jsx";
+import Kategori from "./pages/master/Kategori";
+import Layanan from "./pages/master/Layanan";
+import Pelanggan from "./pages/master/Pelanggan";
+import Projek from "./pages/master/Projek";
 import PDFViewer from "./pages/pdf/PDFViewer";
-import BesiBending from "./pages/pengujian/BesiBending";
-import BesiBendingHasil from "./pages/pengujian/BesiBendingHasil";
-import ListBesiBendingHasil from "./pages/pengujian/ListBesiBendingHasil.jsx";
 
 // import BesiBendingPDF from './pages/pdf/BesiBendingPDF';
-
-// dummy data
-// import Siswa from './assets/dummy_data/Siswa.jsx';
 
 const { Header, Sider, Content } = Layout;
 

@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   createProject,
   deleteProject,
   getProject,
-  // createProject,
-  // getProject,
   listProjects,
   updateProject,
-} from "../services/Project";
+} from "../../services/master/Project";
 
 const Projek = () => {
   const [projects, setProjects] = useState([]);

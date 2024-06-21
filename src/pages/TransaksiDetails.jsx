@@ -4,28 +4,11 @@ import { deleteRequest, getRequest } from "../services/Request";
 
 const TransaksiDetails = () => {
   const [dataRequests, setDataRequests] = useState([]);
-  const [isUpdatePopupOpen, setUpdatePopupOpen] = useState(false);
   const [isDeletePopupOpen, setDeletePopupOpen] = useState(false);
   const { requestId } = useParams();
-
-  //FIELD Request START
   const [requestCode, setRequestCode] = useState("");
-  //FIELD DataRequest START
-
-  const [price, setPrice] = useState("");
-  const [requestQTY, setRequestQTY] = useState(1);
-  const [totalAmount, setTotalAmount] = useState("");
-  const [mutuBeton, setMutuBeton] = useState("");
-  const [split, setSplit] = useState("");
-  const [semen, setSemen] = useState("");
-  const [ageVariation, setAgeVariation] = useState("");
-  //Field DataRequest END
-  const [senderName, setSenderName] = useState("");
-  const [recipientName, setRecipientName] = useState("");
-  const [totalPayment, setTotalPayment] = useState("");
 
   // untuk respon data list
-
   useEffect(() => {
     getRequest(requestId)
       .then((response) => {

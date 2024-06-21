@@ -1,20 +1,18 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
   createMyService,
   deleteMyService,
-  getMyService,
   listMyServices,
   updateMyService,
-} from "../services/MyServiceService";
+} from "../../services/master/MyServiceService";
 
 import { faEdit, faEye, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Layanan = () => {
   const [myServices, setMyServices] = useState([]);
-  const [selectedMyService, setSelectedMyService] = useState("");
   const [serviceId, setServiceId] = useState("");
   const [serviceCode, setServiceCode] = useState("");
   const [serviceName, setServiceName] = useState("");
@@ -28,19 +26,8 @@ const Layanan = () => {
   });
 
   useEffect(() => {
-    if (selectedMyService) {
-      getMyService(selectedMyService)
-        .then((response) => {
-          setServiceCode(response.data.serviceCode);
-          setServiceName(response.data.serviceName);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    } else {
-      getAllMyServices();
-    }
-  }, [selectedMyService]);
+    getAllMyServices();
+  }, []);
 
   // fungsinya untuk memvalidasi isi form bahwa form ini tidak boleh kosong
   function validateForm() {
@@ -98,16 +85,6 @@ const Layanan = () => {
   }
   // Refresh
 
-  const resetForm = () => {
-    setServiceId("");
-    setServiceCode("");
-    setServiceName("");
-    setErrors({
-      serviceCode: "",
-      serviceName: "",
-    });
-  };
-
   // untuk respon data list
   function getAllMyServices() {
     listMyServices()
@@ -118,10 +95,6 @@ const Layanan = () => {
         console.error(error);
       });
   }
-  // Untuk menampilkan di dalam table list
-  // useEffect(() => {
-  //   getAllMyServices();
-  // }, []);
 
   const removeMyService = (id) => {
     deleteMyService(id)
@@ -168,16 +141,6 @@ const Layanan = () => {
         >
           Create Layanan
         </button>
-        {/* <button className="btn btn-secondary mx-2">
-          Kategori Layanan
-        </button> */}
-        {/* Tombol untuk navigasi ke kategori layanan */}
-        {/* <Link to="/kategori/layanan" className="btn btn-secondary mx-2">
-          Kategori Layanan
-        </Link> */}
-        {/* <button className="btn btn-secondary mx-2">
-          Cetak Data
-        </button> */}
       </div>
 
       {isCreatePopupOpen && (
@@ -188,7 +151,6 @@ const Layanan = () => {
               type="text"
               placeholder="Masukkan Kode Layanan"
               name="serviceCode"
-              // value={serviceCode}
               className={` ${errors.serviceCode ? "is-invalid" : ""}`}
               onChange={(e) => setServiceCode(e.target.value)}
             ></input>
@@ -198,8 +160,6 @@ const Layanan = () => {
             <input
               type="text"
               placeholder="Masukkan Nama Layanan"
-              name="serviceName"
-              // value={serviceName}
               className={` ${errors.serviceName ? "is-invalid" : ""}`}
               onChange={(e) => setServiceName(e.target.value)}
             ></input>

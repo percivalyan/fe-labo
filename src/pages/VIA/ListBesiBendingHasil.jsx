@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getBesiBendingBekukByHeaderId } from "../../services/BesiBendingBekuk";
+import { getBesiBendingBekukByHeaderId } from "../../services/VIA/BesiBendingBekuk";
 
 const ListBesiBendingHasil = () => {
   const [results, setResults] = useState([]);
@@ -19,6 +19,8 @@ const ListBesiBendingHasil = () => {
         .catch((error) => {
           console.error("Error fetching customer data:", error);
         });
+    } else {
+      console.log("Error");
     }
   }, [headerVIAId]);
 
@@ -28,10 +30,11 @@ const ListBesiBendingHasil = () => {
 
   return (
     <div className="besiBending">
+      <h2>LIST HASIL DATA PENGUJIAN</h2>
       <table>
         <thead>
           <tr>
-            {/* <th>No</th> */}
+            <th>No</th>
             <th>Code</th>
             <th>GRADE</th>
             <th>Nominal Diameter (mm)</th>
@@ -40,14 +43,13 @@ const ListBesiBendingHasil = () => {
             <th>Angle of Bend (degree)</th>
             <th>Maximum Force (KN)</th>
             <th>VISUAL DESCRIPTION</th>
-            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {results &&
             results.map((besiBending, index) => (
               <tr key={index}>
-                {/* <td>{besiBending.index}</td> */}
+                <td>{index + 1}</td>
                 <td>{besiBending.code}</td>
                 <td>{besiBending.grade}</td>
                 <td>{besiBending.nominalDiameter}</td>
@@ -56,32 +58,11 @@ const ListBesiBendingHasil = () => {
                 <td>{besiBending.angleOfBend}</td>
                 <td>{besiBending.maxForce}</td>
                 <td>{besiBending.visualDescription}</td>
-                <td>
-                  {/* <button onClick={() => handleEdit(besiBending.No)}>
-                  Edit
-                </button>
-                <button onClick={() => setDeletePopupOpen(true)}>
-                  Delete
-                </button> */}
-                  {/* Tolong ini buatkan agar bisa ambil id dari idBesiBending */}
-                  <button onClick={printPDF(headerVIAId)}>Hasil</button>
-                  {/* Tolong ini buatkan agar bisa ambil id dari idBesiBending */}
-                </td>
               </tr>
             ))}
         </tbody>
+        <button onClick={() => printPDF(headerVIAId)}>Cetak</button>
       </table>
-
-      {/* {isDeletePopupOpen && (
-        <div className="popup-box">
-          <div className="popup">
-            <h3>Delete Besi Bending</h3>
-            <p>Are you sure you want to delete this record?</p>
-            <button onClick={() => removeBesiBending(besiBendingId)}>Yes</button>
-            <button onClick={() => setDeletePopupOpen(false)}>No</button>
-          </div>
-        </div>
-      )} */}
     </div>
   );
 };

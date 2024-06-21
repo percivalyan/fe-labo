@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getMyService } from "../services/MyServiceService";
+import { getMyService } from "../../services/master/MyServiceService";
 import {
   createServiceType,
   deleteServiceType,
@@ -8,7 +8,7 @@ import {
   listServiceTypeById,
   listServiceTypes,
   updateServiceType,
-} from "../services/ServiceTypeService";
+} from "../../services/master/ServiceTypeService";
 
 const Kategori = () => {
   const [serviceTypes, setServiceTypes] = useState([]);
@@ -97,7 +97,7 @@ const Kategori = () => {
     } else {
       getAllServiceTypes();
     }
-  }, [serviceId] || [serviceTypeId]);
+  }, [serviceId, serviceTypeId]);
 
   function getServiceTypeById(serviceTypeId) {
     getServiceType(serviceTypeId)

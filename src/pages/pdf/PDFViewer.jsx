@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
-import { getBesiBendingBekukByHeaderId } from "../../services/BesiBendingBekuk";
-import { getHeaderVIAById } from "../../services/HeaderVIA";
+import { getBesiBendingBekukByHeaderId } from "../../services/VIA/BesiBendingBekuk";
+import { getHeaderVIAById } from "../../services/VIA/HeaderVIA";
 
 const PDFViewer = () => {
   const componentRef = useRef();
@@ -12,7 +12,7 @@ const PDFViewer = () => {
   const [customer, setCustomer] = useState("");
   const [project, setProject] = useState("");
   const [alamat, setAlamat] = useState("");
-  const { requestId, headerVIAId } = useParams();
+  const { headerVIAId } = useParams();
 
   // Fetch customer data from API on component mount
   useEffect(() => {
@@ -39,12 +39,6 @@ const PDFViewer = () => {
     }
   }, [headerVIAId]);
 
-  // useEffect(() => {
-  //   if (headerVIAId) {
-
-  //   }
-  // }, [headerVIAId]);
-  // Handle print function
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: kodeUji,
@@ -53,7 +47,7 @@ const PDFViewer = () => {
 
   return (
     <React.Fragment>
-      <button onClick={handlePrint}>Print this out!</button>
+      <button onClick={handlePrint}>CETAK SEKARANG</button>
       <div ref={componentRef}>
         <div className="letterhead" style={styles.letterhead}>
           <div className="container1" style={styles.container1}>
@@ -82,14 +76,21 @@ const PDFViewer = () => {
                 <thead>
                   <tr>
                     <th colSpan="2" style={styles.tableHeader}>
-                      Form No. III.C
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      Form No. VI
+                      A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td style={styles.tableCell}>22 Agustus</td>
-                    <td style={styles.tableCell}>2020 Ver. 1.0</td>
+                    <td style={styles.tableHeader}>
+                      <bold>22 Agustus 2020</bold>
+                    </td>
+                    <td style={styles.tableHeader}>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ver.
+                      1.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -99,6 +100,7 @@ const PDFViewer = () => {
 
         <section id="judul_uji" style={styles.judulUji}>
           <div className="title-penelitian" style={{ margin: "8px" }}>
+            <hr style={styles.styleHR} />
             <h3>STELL BENDING TEST</h3>
           </div>
         </section>
@@ -227,6 +229,18 @@ const PDFViewer = () => {
             </div>
           </div>
         </section>
+        <div style={styles.footerCenterBottom}>
+          <div style={styles.textCenter}>
+            <hr style={styles.styleHR} />
+            <small>
+              <p style={styles.marginBottom}>
+                PT.Allure Berkah Sejahtera-Concrete & Civil Laboratories,
+                Invetigation & Consultant
+                <hr style={styles.styleHR} />
+              </p>
+            </small>
+          </div>
+        </div>
       </div>
     </React.Fragment>
   );
@@ -326,6 +340,17 @@ const styles = {
   },
   marginBottom: {
     marginBottom: "40px",
+  },
+  footerCenterBottom: {
+    flex: 1,
+    bottom: "0",
+  },
+  styleHR: {
+    width: "100%",
+    height: "2px" /* Adjust the thickness as needed */,
+    backgroundColor: "black" /* Change the color if needed */,
+    border: "none" /* Remove the default border */,
+    margin: "0 auto" /* Center the HR element */,
   },
 };
 

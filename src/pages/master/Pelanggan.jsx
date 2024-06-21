@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   createCustomer,
   deleteCustomer,
   getCustomer,
   listCustomers,
   updateCustomer,
-} from "../services/Customer";
+} from "../../services/master/Customer";
 
 const Pelanggan = () => {
   const [customers, setCustomers] = useState([]);
@@ -31,11 +31,6 @@ const Pelanggan = () => {
         console.error(error);
       });
   }
-
-  //Untuk menampilkan list
-  // useEffect(() => {
-  //   getAllCustomers();
-  // }, []);
 
   // fungsinya untuk memvalidasi isi form bahwa form ini tidak boleh kosong
   function validateForm() {

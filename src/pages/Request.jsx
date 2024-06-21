@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { listCustomers } from "../services/Customer";
-import { listMyServices } from "../services/MyServiceService";
-import { listProjects } from "../services/Project";
 import { createRequest, getLast } from "../services/Request";
+import { listCustomers } from "../services/master/Customer";
+import { listMyServices } from "../services/master/MyServiceService";
+import { listProjects } from "../services/master/Project";
 import {
   getServiceType,
   listServiceTypeById,
-} from "../services/ServiceTypeService";
+} from "../services/master/ServiceTypeService";
 
 const Request = () => {
   const [loadingServiceTypes, setLoadingServiceTypes] = useState(false);
@@ -50,18 +50,10 @@ const Request = () => {
   const [serviceTypes, setServiceTypes] = useState([]);
   const [selectedServiceType, setSelectedServiceType] = useState("");
   const [price] = useState("");
-  // const [requestQTY, setRequestQTY] = useState(1);
-  // const [totalAmount, setTotalAmount] = useState("");
-  // const [mutuBeton, setMutuBeton] = useState("");
-  // const [split, setSplit] = useState("");
-  // const [semen, setSemen] = useState("");
-  // const [ageVariation, setAgeVariation] = useState("");
   //Field DataRequest END
   const [senderName, setSenderName] = useState("");
   const [recipientName, setRecipientName] = useState("");
   const [totalPayment, setTotalPayment] = useState("");
-  // const [dp, setDp] = useState("");
-  // const [remainingDP, setRemainingDP] = useState("");
   //FIELD Request END
 
   // untuk respon data customer list
@@ -228,9 +220,6 @@ const Request = () => {
     ageVariation,
   } = inputData;
 
-  // const handleChange = (e) => {
-  //   setInputData({ ...inputData, [e.target.name]: e.target.value });
-  // };
   const handleChange = (e) => {
     const { name, value } = e.target;
     let validValue = value;
@@ -402,7 +391,6 @@ const Request = () => {
               }`}
               name="requestCode"
               value={`${lastId}/${serviceTypeCode}/ABS/${monthNow}/${yearNow}`}
-              // onChange={(e) => setRequestCode(e.target.value)}
               disabled
             ></input>
             {errors.requestCode && (
@@ -629,7 +617,6 @@ const Request = () => {
               <th>Kategori Layanan</th>
               <th>Harga</th>
               <th>Kuantitas</th>
-
               <th>Total Harga</th>
               <th>Catatan</th>
               <th>update</th>
