@@ -76,9 +76,12 @@ button:focus-visible {
   list-style: none;
   box-sizing: none;
   font-family: 'Poppins', sans-serif;
+  
 }
 .sidebar{
   color: #fff;
+  /* min-height: 1000vh !important;
+  width: 30000px !important; */
 }
 .logo{
   display: flex;
@@ -99,12 +102,13 @@ button:focus-visible {
 }
 .menu-bar{
   height: 88vh;
-  margin-top: 2rem;
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   gap: 15px;
   font-size: 1rem;
   position: relative;
+  /* width: 1000px; */
 }
 .toggle-theme-btn{
   position: absolute;
@@ -133,4 +137,8 @@ button:focus-visible {
     --tersier-color: #ffffff; /* Biru terang sebagai tersier */
     --alternative-color: #211d26e2;  /* Hijau gelap sebagai alternatif */
 }
+
+/* .sidebar {
+  border-radius: 100px;
+} */
 

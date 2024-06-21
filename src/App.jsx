@@ -1,4 +1,11 @@
 import { useEffect, useState } from "react";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { Button, Layout, theme } from "antd";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Logo from "./components/Logo";
+import MenuList from "./components/MenuList";
+import ToggleThemeButton from "./components/ToggleThemeButton";
+
 // Import CSS
 import "./App.css";
 import "./assets/css/Kategori.css";
@@ -10,14 +17,11 @@ import "./assets/css/Request.css";
 import "./assets/css/Transaksi.css";
 import "./assets/css/landscape.css";
 import "./assets/css/print.css";
-// Import CSS
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { Button, Layout, theme } from "antd";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./assets/css/BesiBending.css";
-import Logo from "./components/Logo";
-import MenuList from "./components/MenuList";
-import ToggleThemeButton from "./components/ToggleThemeButton";
+import "./assets/css/KwitansiBesi.css";
+// Import CSS
+
+// Import Pages
 import Dashboard from "./pages/Dashboard";
 import Kwitansi from "./pages/Kwitansi";
 import Request from "./pages/Request";
@@ -31,6 +35,10 @@ import Layanan from "./pages/master/Layanan";
 import Pelanggan from "./pages/master/Pelanggan";
 import Projek from "./pages/master/Projek";
 import PDFViewer from "./pages/pdf/PDFViewer";
+import KwitansiBesi from "./pages/template/kwitansibesi/KwitansiBesi.jsx";
+import KwitansiBesiHasil from "./pages/template/kwitansibesi/KwitansiBesiHasil.jsx";
+import KwitansiBesiPDF from "./pages/template/kwitansibesi/KwitansiBesiPDF.jsx";
+// Import Pages
 
 // import BesiBendingPDF from './pages/pdf/BesiBendingPDF';
 
@@ -74,6 +82,7 @@ function App() {
     <BrowserRouter>
       <Layout>
         <Sider
+        width={250} //Mengatur jarak sidebar
           theme={darkTheme ? "dark" : "light"}
           className="sidebar"
           collapsed={collapsed}
@@ -154,6 +163,14 @@ function App() {
               {/* Transaksi */}
 
               <Route path="/pdf/:headerVIAId/print" element={<PDFViewer />} />
+
+
+              {/* FUTUREUI */}
+              <Route path="kwitansi-besi" element={<KwitansiBesi />}></Route>
+              <Route path="kwitansi-besi-hasil" element={<KwitansiBesiHasil />}></Route>
+              <Route path="kwitansi-besi-pdf" element={<KwitansiBesiPDF />}></Route>
+            
+              {/* FUTUREUI */}
             </Routes>
           </Content>
         </Layout>

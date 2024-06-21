@@ -114,6 +114,33 @@ const MenuList = ({ darkTheme }) => {
       icon: <SettingOutlined />,
       label: "Pengaturan",
     },
+    {
+      key: "all_of_ui",
+      icon: <DatabaseOutlined />,
+      label: "User Interface",
+      children: [
+        {
+          key: "Kwitansi_Form_Permintaan_Besi",
+          icon: <AppstoreOutlined />,
+          label: <Link to="/kwitansi-besi">Kwitansi Besi</Link>,
+        },
+        {
+          key: "Kwitansi_Form_Permintaan_Besi_Hasil",
+          icon: <AppstoreOutlined />,
+          label: <Link to="/kwitansi-besi-hasil">Kwitansi Besi Hasil</Link>,
+        },
+        {
+          key: "Kwitansi_Form_Permintaan_Besi_PDF",
+          icon: <AppstoreOutlined />,
+          label: <Link to="/kwitansi-besi-pdf">Kwitansi Besi PDF</Link>,
+        },
+        {
+          key: "Universal_Kwitansi",
+          icon: <ApartmentOutlined />,
+          label: <Link to="/kwitansi-universal">Lihat Kwitansi</Link>,
+        },
+      ],
+    },
   ];
 
   return (
@@ -124,6 +151,7 @@ const MenuList = ({ darkTheme }) => {
       items={items}
       openKeys={openKeys}
       onOpenChange={onOpenChange}
+      // style={{ marginRight: "20px" }}
     />
   );
 };

@@ -20,6 +20,7 @@ const Projek = () => {
     namaProjek: "",
     telp: "",
   });
+  
 
   // fungsinya untuk memvalidasi isi form bahwa form ini tidak boleh kosong
   function validateForm() {
