@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Button, Layout, theme } from "antd";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Logo from "./components/Logo";
 import MenuList from "./components/MenuList";
@@ -8,17 +8,17 @@ import ToggleThemeButton from "./components/ToggleThemeButton";
 
 // Import CSS
 import "./App.css";
-import "./assets/css/Kategori.css";
+
 import "./assets/css/Kwitansi.css";
-import "./assets/css/Layanan.css";
-import "./assets/css/Pelanggan.css";
-import "./assets/css/Projek.css";
+
+import "./assets/css/Master.css";
+
+import "./assets/css/BesiBending.css";
+import "./assets/css/KwitansiBesi.css";
 import "./assets/css/Request.css";
 import "./assets/css/Transaksi.css";
 import "./assets/css/landscape.css";
 import "./assets/css/print.css";
-import "./assets/css/BesiBending.css";
-import "./assets/css/KwitansiBesi.css";
 // Import CSS
 
 // Import Pages
@@ -82,7 +82,7 @@ function App() {
     <BrowserRouter>
       <Layout>
         <Sider
-        width={250} //Mengatur jarak sidebar
+          width={250} //Mengatur jarak sidebar
           theme={darkTheme ? "dark" : "light"}
           className="sidebar"
           collapsed={collapsed}
@@ -164,12 +164,17 @@ function App() {
 
               <Route path="/pdf/:headerVIAId/print" element={<PDFViewer />} />
 
-
               {/* FUTUREUI */}
               <Route path="kwitansi-besi" element={<KwitansiBesi />}></Route>
-              <Route path="kwitansi-besi-hasil" element={<KwitansiBesiHasil />}></Route>
-              <Route path="kwitansi-besi-pdf" element={<KwitansiBesiPDF />}></Route>
-            
+              <Route
+                path="kwitansi-besi-hasil"
+                element={<KwitansiBesiHasil />}
+              ></Route>
+              <Route
+                path="kwitansi-besi-pdf"
+                element={<KwitansiBesiPDF />}
+              ></Route>
+
               {/* FUTUREUI */}
             </Routes>
           </Content>

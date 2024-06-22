@@ -20,7 +20,6 @@ const Projek = () => {
     namaProjek: "",
     telp: "",
   });
-  
 
   // fungsinya untuk memvalidasi isi form bahwa form ini tidak boleh kosong
   function validateForm() {
@@ -140,7 +139,7 @@ const Projek = () => {
   const [isDeletePopupOpen, setDeletePopupOpen] = useState(false);
 
   return (
-    <div className="projek">
+    <div className="master">
       <h2>Projek</h2>
 
       <div>

@@ -242,7 +242,7 @@ const Kategori = () => {
   }
 
   return (
-    <div className="kategori">
+    <div className="master">
       {/* <h2>Kategori Layanan</h2> */}
 
       {showCreate()}

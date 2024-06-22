@@ -129,7 +129,7 @@ const Layanan = () => {
   }
 
   return (
-    <div className="layanan">
+    <div className="master">
       <h2>Layanan</h2>
       <div>
         <button
