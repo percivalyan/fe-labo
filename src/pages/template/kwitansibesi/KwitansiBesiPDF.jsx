@@ -469,8 +469,8 @@ const KwitansiBesiPDF = () => {
           <th style={styles.tableCell2}></th>
            <th style={styles.tableCell3}></th>
            <th style={styles.tableCell4}>Total</th>
-            <th style={styles.tableCell4}>your data</th>
-            <th style={styles.tableCell4}>your data</th>
+            <td style={styles.tableCell4}>your data</td>
+            <td style={styles.tableCell4}>your data</td>
             {/* <th style={styles.tableCell}>{result.totalHargaSatuan}</th>
             <th style={styles.tableCell}>{result.cicilan}</th>
             <th style={styles.tableCell}>{result.totalSemuaBiaya}</th> */}
@@ -485,8 +485,8 @@ const KwitansiBesiPDF = () => {
           <th style={styles.tableCell2}></th>
            <th style={styles.tableCell3}></th>
            <th style={styles.tableCell4}></th>
-            <th style={styles.tableCell4}>your data</th>
-            <th style={styles.tableCell4}>your data</th>
+            <td style={styles.tableCell4}>your data</td>
+            <td style={styles.tableCell4}>your data</td>
             {/* <th style={styles.tableCell}>{result.totalHargaSatuan}</th>
             <th style={styles.tableCell}>{result.cicilan}</th>
             <th style={styles.tableCell}>{result.totalSemuaBiaya}</th> */}
@@ -501,8 +501,8 @@ const KwitansiBesiPDF = () => {
           <th style={styles.tableCell2}></th>
            <th style={styles.tableCell3}></th>
            <th style={styles.tableCell4}>Sub Total</th>
-            <th style={styles.tableCell4}>your data</th>
-            <th style={styles.tableCell4}>your data</th>
+            <td style={styles.tableCell4}>your data</td>
+            <td style={styles.tableCell4}>your data</td>
             {/* <th style={styles.tableCell}>{result.totalHargaSatuan}</th>
             <th style={styles.tableCell}>{result.cicilan}</th>
             <th style={styles.tableCell}>{result.totalSemuaBiaya}</th> */}
