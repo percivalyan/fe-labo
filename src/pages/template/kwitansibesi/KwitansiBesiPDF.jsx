@@ -8,7 +8,7 @@ const KwitansiBesiPDF = () => {
   const componentRef = useRef();
   const [results, setResults] = useState([
     {
-        bendaUji: "Bolt A",
+        bendaUji1: "Bolt A",
         jenisUjiMaterial: "Tensile Test",
         jumlah: 1,
         hargaSatuan: 100,
@@ -30,9 +30,51 @@ const KwitansiBesiPDF = () => {
         hargaSatuan: 150,
         hargaSatuanPPN: 165,
         totalBiaya: 330,
-      }
+      },
+      {
+        bendaUji: "Bolt A",
+        jenisUjiMaterial: "Fatigue Test",
+        jumlah: 2,
+        hargaSatuan: 150,
+        hargaSatuanPPN: 165,
+        totalBiaya: 330,
+      },
+      {
+        bendaUji: "Bolt A",
+        jenisUjiMaterial: "Fatigue Test",
+        jumlah: 2,
+        hargaSatuan: 150,
+        hargaSatuanPPN: 165,
+        totalBiaya: 330,
+      },
+      {
+        bendaUji: "Bolt A",
+        jenisUjiMaterial: "Fatigue Test",
+        jumlah: 2,
+        hargaSatuan: 150,
+        hargaSatuanPPN: 165,
+        totalBiaya: 330,
+      },
+      {
+        bendaUji: "Bolt A",
+        jenisUjiMaterial: "Fatigue Test",
+        jumlah: 2,
+        hargaSatuan: 150,
+        hargaSatuanPPN: 165,
+        totalBiaya: 330,
+      },
+
+      // {
+      //   totalHargaSatuan: 333,
+      //   cicilan: 335,
+      //   totalSemuaBiaya: 332,
+      // }
      
   ]);
+
+  // const [datas, setDatas] = useState([   
+
+  // ]);
 
   const [header, setHeader] = useState([]);
   const [kodeUji, setKodeUji] = useState("");
@@ -86,10 +128,10 @@ const KwitansiBesiPDF = () => {
             />
             <div className="header-text" style={styles.headerText}>
               <h1 style={styles.companyName}>PT. Allure Berkah Sejahtera</h1>
-              <p style={styles.companyDetails}>
-                Concrete & Civil Laboratories, Investigation & Consultant
-              </p>
-              <p style={styles.companyDetails}>Head Office & Laboratory</p>
+              <p style={styles.companyDetails}>- Material Testing For Concrete, Ashphlat, Agregat</p>
+              <p style={styles.companyDetails}>- Destructive & Non Destructive Testing Service</p>
+              <p style={styles.companyDetails}>- JMF & Ready mix Consultant</p>
+              <p style={styles.companyDetails2}>Office and laboratory :</p>
               <p style={styles.companyAddress}>
                 Jl. Raya Serang – Cilegon KM4, Drangong, Kec Taktakan, Kota
                 Serang –Banten 42162
@@ -105,7 +147,7 @@ const KwitansiBesiPDF = () => {
                   <tr>
                     <th colSpan="2" style={styles.tableHeader}>
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      Form No. VI
+                      FM-PUR-01
                       A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </th>
                   </tr>
@@ -113,7 +155,7 @@ const KwitansiBesiPDF = () => {
                 <tbody>
                   <tr>
                     <td style={styles.tableHeader}>
-                      <bold>22 Agustus 2020</bold>
+                      <bold>01 Februari 2024</bold>
                     </td>
                     <td style={styles.tableHeader}>
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ver.
@@ -134,7 +176,7 @@ const KwitansiBesiPDF = () => {
           </div>
         </section>
 
-        <section id="data_uji">
+        {/* <section id="data_uji">
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div
               className="title-penelitian"
@@ -185,59 +227,6 @@ const KwitansiBesiPDF = () => {
         </tbody>
       </table>
 
-      {/* <table style={{ borderCollapse: "collapse", width: "100%" }}>
-  <tbody>
-    <tr>
-      <td style={{ border: "0", width: "150px" }}>Nama Pengirim</td>
-      <td style={{ border: "0" }}>: {data.namaPengirim}</td>
-      <td style={{ border: "0", width: "150px" }}>Email</td>
-      <td style={{ border: "0" }}>: {data.email}</td>
-    </tr>
-    <tr>
-      <td style={{ border: "0", width: "150px" }}>Tanggal Masuk</td>
-      <td style={{ border: "0" }}>: {data.tanggalMasuk}</td>
-      <td style={{ border: "0", width: "150px" }}>Telp/Fax Pengirim</td>
-      <td style={{ border: "0" }}>: {data.telpFaxPengirim}</td>
-    </tr>
-  </tbody>
-</table> */}
-
-{/* <table style={{ borderCollapse: "collapse", width: "100%" }}>
-  <tbody>
-    <tr>
-      <td style={{ border: "0", width: "150px" }}>Nama Pengirim</td>
-      <td style={{ border: "0", paddingRight: "40px" }}>: {data.namaPengirim}</td>
-      <td style={{ border: "0", width: "150px" }}>Email</td>
-      <td style={{ border: "0" }}>: {data.email}</td>
-    </tr>
-    <tr>
-      <td style={{ border: "0", width: "150px" }}>Tanggal Masuk</td>
-      <td style={{ border: "0", paddingRight: "40px" }}>: {data.tanggalMasuk}</td>
-      <td style={{ border: "0", width: "150px" }}>Telp/Fax Pengirim</td>
-      <td style={{ border: "0" }}>: {data.telpFaxPengirim}</td>
-    </tr>
-  </tbody>
-</table> */}
-{/* <table style={{ borderCollapse: "collapse", width: "100%" }}>
-  <tbody>
-    <tr>
-      <td style={{ border: "0", width: "150px" }}>Nama Pengirim</td>
-      <td style={{ border: "0", paddingRight: "40px" }}>: {data.namaPengirim}</td>
-      <td style={{ border: "0", width: "150px", paddingLeft: "100px" }}>Email</td>
-      <td style={{ border: "0", }}>: {data.email}</td>
-    </tr>
-    <tr>
-      <td style={{ border: "0", width: "150px" }}>Tanggal Masuk</td>
-      <td style={{ border: "0", paddingRight: "40px" }}>: {data.tanggalMasuk}</td>
-      <td style={{ border: "0", width: "150px", paddingLeft: "100px" }}>Telp/Fax</td>
-      <td style={{ border: "0", }}>: {data.telpFaxPengirim}</td>
-    </tr>
-  </tbody>
-</table> */}
-
-
-    
-
 
             </div>
 
@@ -252,7 +241,67 @@ const KwitansiBesiPDF = () => {
             >
             </div>
           </div>
-        </section>
+        </section> */}
+
+<section id="data_uji" style={{ padding: '10px', marginTop: '-15px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        {/* Kolom kiri */}
+        <div style={{ width: '45%', marginLeft: '150px', fontSize: '10px' }}>
+          <table style={{ borderCollapse: 'collapse' }}>
+            <tbody>
+              <tr>
+                <td style={{ border: '0', padding: '0px 10px' }}>Nama Perusahaan</td>
+                <td style={{ border: '0', padding: '0px 10px' }}>: {data.namaPerusahaan}</td>
+              </tr>
+              <tr>
+                <td style={{ border: '0', padding: '0px 10px' }}>NPWP Perusahaan</td>
+                <td style={{ border: '0', padding: '0px 10px' }}>: {data.npwpPerusahaan}</td>
+              </tr>
+              <tr>
+                <td style={{ border: '0', padding: '0px 10px' }}>Alamat NPWP</td>
+                <td style={{ border: '0', padding: '0px 10px' }}>: {data.alamatNPWP}</td>
+              </tr>
+              <tr>
+                <td style={{ border: '0', padding: '0px 10px' }}>Proyek</td>
+                <td style={{ border: '0', padding: '0px 10px' }}>: {data.proyek}</td>
+              </tr>
+              <tr>
+                <td style={{ border: '0', padding: '0px 10px' }}>Alamat Proyek</td>
+                <td style={{ border: '0', padding: '0px 10px' }}>: {data.alamatProyek}</td>
+              </tr>
+              <tr>
+                <td style={{ border: '0', padding: '0px 10px' }}>Telp/Fax Proyek</td>
+                <td style={{ border: '0', padding: '0px 10px' }}>: {data.telpFaxProyek}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Kolom kanan */}
+        <div style={{ width: '45%', marginRight: '40px', marginBottom: '180px', fontSize: '10px' }}>
+          <table style={{ borderCollapse: 'collapse' }}>
+            <tbody>
+              <tr>
+                <td style={{ border: '0', padding: '0px 10px' }}>Nama Pengirim</td>
+                <td style={{ border: '0', padding: '0px 10px' }}>: {data.namaPengirim}</td>
+              </tr>
+              <tr>
+                <td style={{ border: '0', padding: '0px 10px' }}>Email</td>
+                <td style={{ border: '0', padding: '0px 10px' }}>: {data.email}</td>
+              </tr>
+              <tr>
+                <td style={{ border: '0', padding: '0px 10px' }}>Tanggal Masuk</td>
+                <td style={{ border: '0', padding: '0px 10px' }}>: {data.tanggalMasuk}</td>
+              </tr>
+              <tr>
+                <td style={{ border: '0', padding: '0px 10px' }}>Telp/Fax Pengirim</td>
+                <td style={{ border: '0', padding: '0px 10px' }}>: {data.telpFaxPengirim}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
 
         {/* <section id="data_tabel" style={styles.dataTabel}>
           <table style={styles.dataTable}>
@@ -343,6 +392,41 @@ const KwitansiBesiPDF = () => {
   </table>
 </section> */}
 
+{/* Fix */}
+{/* <section id="data_tabel" style={styles.dataTabel}>
+  <table style={styles.dataTable}>
+    <thead>
+      <tr>
+        <th style={styles.tableCell}>Benda Uji</th>
+        <th style={styles.tableCell}>Jenis Uji Material</th>
+        <th style={styles.tableCell}>Jumlah</th>
+        <th style={styles.tableCell}>Harga Satuan</th>
+        <th style={styles.tableCell}>Harga Satuan PPN</th>
+        <th style={styles.tableCell}>Total Biaya</th>
+      </tr>
+    </thead>
+    <tbody>
+      {results.map((result, index) => (
+        <React.Fragment key={index}>
+          <tr>
+            {index === 0 && (
+              <td rowSpan={results.length} style={styles.tableCell}>
+                {result.bendaUji}
+              </td>
+            )}
+            <td style={styles.tableCell}>{result.jenisUjiMaterial}</td>
+            <td style={styles.tableCell}>{result.jumlah}</td>
+            <td style={styles.tableCell}>{result.hargaSatuan}</td>
+            <td style={styles.tableCell}>{result.hargaSatuanPPN}</td>
+            <td style={styles.tableCell}>{result.totalBiaya}</td>
+          </tr>
+        </React.Fragment>
+      ))}
+    </tbody>
+  </table>
+</section> */}
+{/* Fix */}
+
 <section id="data_tabel" style={styles.dataTabel}>
   <table style={styles.dataTable}>
     <thead>
@@ -358,35 +442,109 @@ const KwitansiBesiPDF = () => {
     <tbody>
       {results.map((result, index) => (
         <React.Fragment key={index}>
-          {/* Render the first row for each "Benda Uji" */}
+          {/* Render the main row */}
           <tr>
             {/* Only render "Benda Uji" for the first row of each group */}
             {index === 0 && (
-              <td rowSpan={results.length} style={styles.tableCell}>
-                {result.bendaUji}
+              <td rowSpan={results.length * 4} style={styles.tableCell}>
+                {result.bendaUji1}
               </td>
             )}
+              {/* <td style={styles.tableCell}>s</td> */}
             <td style={styles.tableCell}>{result.jenisUjiMaterial}</td>
             <td style={styles.tableCell}>{result.jumlah}</td>
             <td style={styles.tableCell}>{result.hargaSatuan}</td>
             <td style={styles.tableCell}>{result.hargaSatuanPPN}</td>
             <td style={styles.tableCell}>{result.totalBiaya}</td>
-          </tr>
-          {/* Render the second row for the additional data */}
-          {/* Ensure index > 0 to avoid duplicating "Benda Uji" */}
-          {/* {index > 0 && (
-            <tr>
-              <td style={styles.tableCell}>{result.jenisUjiMaterial}</td>
-              <td style={styles.tableCell}>{result.jumlah}</td>
-              <td style={styles.tableCell}>{result.hargaSatuan}</td>
-              <td style={styles.tableCell}>{result.hargaSatuanPPN}</td>
-              <td style={styles.tableCell}>{result.totalBiaya}</td>
-            </tr>
-          )} */}
+          </tr>        
         </React.Fragment>
       ))}
     </tbody>
+
+    <tbody>
+
+          {/* Render the main row */}
+          <tr>
+            <th style={styles.tableCell2}></th>
+          <th style={styles.tableCell2}></th>
+           <th style={styles.tableCell3}></th>
+           <th style={styles.tableCell4}>Total</th>
+            <th style={styles.tableCell4}>your data</th>
+            <th style={styles.tableCell4}>your data</th>
+            {/* <th style={styles.tableCell}>{result.totalHargaSatuan}</th>
+            <th style={styles.tableCell}>{result.cicilan}</th>
+            <th style={styles.tableCell}>{result.totalSemuaBiaya}</th> */}
+          </tr>        
+       
+    </tbody>
+    <tbody>
+
+          {/* Render the main row */}
+          <tr>
+            <th style={styles.tableCell2}></th>
+          <th style={styles.tableCell2}></th>
+           <th style={styles.tableCell3}></th>
+           <th style={styles.tableCell4}></th>
+            <th style={styles.tableCell4}>your data</th>
+            <th style={styles.tableCell4}>your data</th>
+            {/* <th style={styles.tableCell}>{result.totalHargaSatuan}</th>
+            <th style={styles.tableCell}>{result.cicilan}</th>
+            <th style={styles.tableCell}>{result.totalSemuaBiaya}</th> */}
+          </tr>        
+       
+    </tbody>
+    <tbody>
+
+          {/* Render the main row */}
+          <tr>
+            <th style={styles.tableCell2}></th>
+          <th style={styles.tableCell2}></th>
+           <th style={styles.tableCell3}></th>
+           <th style={styles.tableCell4}>Sub Total</th>
+            <th style={styles.tableCell4}>your data</th>
+            <th style={styles.tableCell4}>your data</th>
+            {/* <th style={styles.tableCell}>{result.totalHargaSatuan}</th>
+            <th style={styles.tableCell}>{result.cicilan}</th>
+            <th style={styles.tableCell}>{result.totalSemuaBiaya}</th> */}
+          </tr>        
+       
+    </tbody>
+    
   </table>
+  
+
+  {/* <table style={styles.dataTable2}>
+    <thead>
+      <tr>
+        <th style={styles.tableCell}>Benda Uji</th>
+      </tr>
+
+      <tr>
+        
+      </tr>
+     </thead>
+
+
+
+     <thead>
+      
+    </thead>
+    <tbody>
+      {results.map((result, index) => (
+        <React.Fragment key={index}>
+         
+          <tr>
+            <td style={styles.tableCell}>{result.hargaSatuan}</td>
+            <td style={styles.tableCell}>{result.hargaSatuanPPN}</td>
+            <td style={styles.tableCell}>{result.totalBiaya}</td>
+          </tr>       
+           
+        </React.Fragment>
+      ))}
+    </tbody>
+  </table> */}
+
+
 </section>
 
 
@@ -424,15 +582,17 @@ const KwitansiBesiPDF = () => {
     </table>
   </section> */}
 
-        <section id="footer" style={styles.footer}>
+        {/* <section id="footer" style={styles.footer}>
           <div style={styles.footerContainer}>
             <div style={styles.footerLeft}>
               <div style={styles.textCenter}>
-                <p style={styles.boldText}>SNI 2052:2017</p>
-                <p style={styles.boldText}>SNI 0410:2017</p>
+                <p style={styles.text}>Noted: Untuk Pengujian Tarik Besi harga sama dengan Harga Pengujian Tekuk Besi</p>
               </div>
             </div>
-            <div style={styles.footerRight}>
+           <table>
+            <tbody>
+              <tr>
+              <div style={styles.footerRight}>
               <div style={styles.textCenter}>
                 <p>{getCurrentDate()}</p>
                 <br />
@@ -441,16 +601,71 @@ const KwitansiBesiPDF = () => {
                 <p>Kepala Laboratorium</p>
               </div>
             </div>
+              </tr>
+            </tbody>
+           </table>
+
+
+           <table>
+            <tbody>
+              <tr>
+              <div style={styles.footerRight}>
+              <div style={styles.textCenter}>
+                <p>{getCurrentDate()}</p>
+                <br />
+                <p style={styles.marginBottom}>TTD</p>
+                <p>Herry Supriyadi, ST</p>
+                <p>Kepala Laboratorium</p>
+              </div>
+            </div>
+              </tr>
+            </tbody>
+           </table>
           </div>
         </section>
+         */}
+           <div style={{marginLeft: '100px', marginTop: '20px', fontSize: '12px'}}>
+            <p style={styles.text}>Noted: Untuk Pengujian Tarik Besi harga sama dengan Harga Pengujian Tekuk Besi</p>
+          </div>
+
+
+<section id="footer" style={styles.footer}>
+      <div style={styles.footerContainer}>
+        <div style={styles.footerLeft}>
+          {/* <div style={styles.textCenter}>
+            <p style={styles.text}>Noted: Untuk Pengujian Tarik Besi harga sama dengan Harga Pengujian Tekuk Besi</p>
+          </div> */}
+        </div>
+        <div style={styles.footerRight}>
+          <div style={styles.textCenter2}>
+            <p style={{marginBottom: '-30px'}}>{getCurrentDate()}</p>
+            <br />
+            <p style={styles.marginBottom}>Yang Menerima</p>
+            <p style={{marginTop: '40px'}}>(................................)</p>
+           
+       
+          </div>
+        </div>
+        <div style={styles.footerRight}>
+          <div style={styles.textCenter2}>
+            <p style={{color: 'white', marginBottom: '-30px'}}>{getCurrentDate()}</p>
+            <br />
+            <p style={styles.marginBottom}>Yang Menyerahkan</p>
+            <p style={{marginTop: '40px'}}>(................................)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
         <div style={styles.footerCenterBottom}>
           <div style={styles.textCenter}>
-            <hr style={styles.styleHR} />
+            {/* <hr style={styles.styleHR} /> */}
             <small>
               <p style={styles.marginBottom}>
                 PT.Allure Berkah Sejahtera-Concrete & Civil Laboratories,
                 Invetigation & Consultant
-                <hr style={styles.styleHR} />
+                {/* <hr style={styles.styleHR} /> */}
               </p>
             </small>
           </div>
@@ -492,6 +707,11 @@ const styles = {
     margin: "2px 0",
     fontSize: "12px",
   },
+  companyDetails2: {
+    margin: "2px 0",
+    fontSize: "12px",
+    fontStyle: "italic",
+  },
   companyAddress: {
     margin: "2px 0",
     fontSize: "12px",
@@ -518,15 +738,44 @@ const styles = {
     padding: "1px",
     textAlign: "center",
   },
+  tableCell2: {
+    border: "1px solid white",
+    borderTop: "1px solid black",
+    padding: "1px",
+    textAlign: "center",
+  },
+  tableCell3: {
+    border: "1px solid white",
+    borderTop: "1px solid white",
+    borderRight: "1px solid black",
+    padding: "1px",
+    textAlign: "center",
+  },
+  tableCell4: {
+    border: "1px solid black",
+    // borderTop: "1px solid black",
+    // borderleft: "1px solid black",
+    // borderRight: "1px solid black",
+    padding: "1px",
+    textAlign: "center",
+  },
   judulUji: {
     textAlign: "center",
     fontSize: "10px",
   },
   dataTabel: {
     textAlign: "center",
+    marginTop: "-150px",
   },
   dataTable: {
     margin: "-10px auto",
+    width: "80%",
+    borderCollapse: "collapse",
+    border: "1px solid black",
+    fontSize: "10px",
+  },
+  dataTable2: {
+    margin: "9.25px auto",
     width: "80%",
     borderCollapse: "collapse",
     border: "1px solid black",
@@ -546,6 +795,10 @@ const styles = {
   textCenter: {
     textAlign: "center",
   },
+  textCenter2: {
+    textAlign: "center",
+    marginTop: "-25px",
+  },
   boldText: {
     fontWeight: "bold",
   },
@@ -554,18 +807,19 @@ const styles = {
     textAlign: "right",
   },
   marginBottom: {
-    marginBottom: "40px",
+    marginBottom: "50px",
   },
   footerCenterBottom: {
     flex: 1,
     bottom: "0",
+    marginTop: "15px",
   },
   styleHR: {
     width: "100%",
-    height: "2px" /* Adjust the thickness as needed */,
-    backgroundColor: "black" /* Change the color if needed */,
-    border: "none" /* Remove the default border */,
-    margin: "0 auto" /* Center the HR element */,
+    height: "2px",
+    backgroundColor: "black",
+    border: "none",
+    margin: "0 auto" 
   },
 };
 
@@ -593,7 +847,8 @@ const getCurrentDate = () => {
   const year = date.getFullYear();
 
   // Return formatted date string
-  return `Serang, ${day} ${month} ${year}`;
+  // return `Serang, ${day} ${month} ${year}`;
+  return `Serang,`;
 };
 
 const data = {
