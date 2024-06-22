@@ -624,7 +624,7 @@ const KwitansiBesiPDF = () => {
           </div>
         </section>
          */}
-           <div style={{marginLeft: '100px', marginTop: '20px', fontSize: '12px'}}>
+           <div style={{marginLeft: '100px', marginTop: '20px', fontSize: '10px'}}>
             <p style={styles.text}>Noted: Untuk Pengujian Tarik Besi harga sama dengan Harga Pengujian Tekuk Besi</p>
           </div>
 
@@ -637,21 +637,21 @@ const KwitansiBesiPDF = () => {
           </div> */}
         </div>
         <div style={styles.footerRight}>
-          <div style={styles.textCenter2}>
-            <p style={{marginBottom: '-30px'}}>{getCurrentDate()}</p>
+          <div style={styles.textCenter3}>
+            <p style={{marginBottom: '-20px'}}>{getCurrentDate()}</p>
             <br />
             <p style={styles.marginBottom}>Yang Menerima</p>
-            <p style={{marginTop: '40px'}}>(................................)</p>
+            <p style={{marginTop: '55px'}}>(................................)</p>
            
        
           </div>
         </div>
         <div style={styles.footerRight}>
           <div style={styles.textCenter2}>
-            <p style={{color: 'white', marginBottom: '-30px'}}>{getCurrentDate()}</p>
+            <p style={{color: 'white', marginBottom: '-20px'}}>{getCurrentDate()}</p>
             <br />
             <p style={styles.marginBottom}>Yang Menyerahkan</p>
-            <p style={{marginTop: '40px'}}>(................................)</p>
+            <p style={{marginTop: '55px'}}>(................................)</p>
           </div>
         </div>
       </div>
@@ -783,6 +783,7 @@ const styles = {
   },
   footer: {
     marginTop: "20px",
+    fontSize: '12px',
   },
   footerContainer: {
     display: "flex",
@@ -799,6 +800,11 @@ const styles = {
     textAlign: "center",
     marginTop: "-25px",
   },
+  textCenter3: {
+    textAlign: "center",
+    marginTop: "-25px",
+    marginRight: "-80px",
+  },
   boldText: {
     fontWeight: "bold",
   },
@@ -812,7 +818,7 @@ const styles = {
   footerCenterBottom: {
     flex: 1,
     bottom: "0",
-    marginTop: "15px",
+    marginTop: "25px",
   },
   styleHR: {
     width: "100%",
@@ -847,8 +853,8 @@ const getCurrentDate = () => {
   const year = date.getFullYear();
 
   // Return formatted date string
-  // return `Serang, ${day} ${month} ${year}`;
-  return `Serang,`;
+  return `Serang, ${day} ${month} ${year}`;
+  // return `Serang,`;
 };
 
 const data = {
